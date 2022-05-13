@@ -70,7 +70,7 @@ namespace N_Puzzel_Project
             if (N.check_right_value())
             {
                 Puzzel New_puzzel = new Puzzel(N);
-                New_puzzel.right_movement();
+                New_puzzel.Right_movement();
                 New_puzzel.manhattan();
                 New_puzzel.Calculate_min_cost_Manhattan();
                 if (New_puzzel.IS_reache_to_goal_manhattan())
