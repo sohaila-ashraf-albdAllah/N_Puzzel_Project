@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace N_Puzzel_Project
 {
     class Priority_Queue
-    {
-        
+    {  
         public List<Puzzel> PUZZLE;
         public Priority_Queue()
         {                                                                                                                                                                                                             
@@ -57,6 +55,5 @@ namespace N_Puzzel_Project
             }
             return frontItem;
         }
-
     }
 }
