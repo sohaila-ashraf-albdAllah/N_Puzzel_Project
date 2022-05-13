@@ -4,7 +4,7 @@ using System.Text;
 
 namespace N_Puzzel_Project
 {
-    class Manhattan
+    class Priority_Queue
     {
 
     }
