@@ -15,7 +15,7 @@ namespace N_Puzzel_Project
         {
             Open_child.Add(First.key, First);
             PQ_list.Enqueue(First);
-            while (PQ_list.data.Count != 0)
+            while (PQ_list.PUZZLE.Count != 0)
             {
                 Puzzel New = new Puzzel(PQ_list.Dequeue());
                 if(Closed_child(New) == 1)
