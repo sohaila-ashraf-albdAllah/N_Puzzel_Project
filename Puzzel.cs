@@ -55,21 +55,6 @@ namespace N_Puzzel_Project
 
         }
 
-       /* public int fn;  
-        public void calculate_huristic (bool huristic) 
-        {
-            if (huristic == true )
-            {
-                Hamming();
-                fn = number_of_level + hamming_value;
-            }
-            else
-            {
-                // manhatten();
-               // fn = number_of_level + manhatten;
-            }
-        }*/
-
         public void Hamming()
         {
             /* ex
