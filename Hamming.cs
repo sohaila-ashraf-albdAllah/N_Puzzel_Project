@@ -10,9 +10,9 @@ namespace N_Puzzel_Project
         public Dictionary<string, Puzzel> closed_child = new Dictionary<string, Puzzel>();
         public Priority_Queue PQ_list = new Priority_Queue();
         public List<Puzzel> Path_Of_Res = new List<Puzzel>();
-        public void Get_final_Path(Puzzel goal)
+        public void Get_final_Path(Puzzel final)
         {
-            Puzzel prnt = goal.parent;
+            Puzzel prnt = final.parent;
             while (prnt.parent != null)
             {
                 Path_Of_Res.Add(prnt);
@@ -49,21 +49,14 @@ namespace N_Puzzel_Project
 
         public void Create_New_Child(Puzzel p)
         {
-            Puzzel child = new Puzzel(p);
-            Boolean check;
-            check = Child_Open(child);
-
+           
             if (p.check_up_value() == true)
             {
+                Puzzel child = new Puzzel(p);
+                bool check;
                 child.UP_movement();
                 child.Hamming();
                 child.Calculate_min_cost_of_hamming();
-
-                if (check == false)
-                {
-                    PQ_list.Enqueue(child);
-                    Open_child.Add(child.key, child);
-                }
 
                 if (child.IS_reache_to_goal_hamming() == true)
                 {
@@ -72,18 +65,23 @@ namespace N_Puzzel_Project
                     Get_final_Path(child);
                 }
                 child.direction_of_moves = "UP";
-            }
+                check = Child_Open(child);
 
-            if (p.check_down_value() == true)
-            {
-                child.Down_movement();
-                child.Hamming();
-                child.Calculate_min_cost_of_hamming();
                 if (check == false)
                 {
                     PQ_list.Enqueue(child);
                     Open_child.Add(child.key, child);
                 }
+            }
+
+            if (p.check_down_value() == true)
+            {
+                Puzzel child = new Puzzel(p);
+                bool check;
+                child.Down_movement();
+                child.Hamming();
+                child.Calculate_min_cost_of_hamming();
+                
                 if (child.IS_reache_to_goal_hamming() == true)
                 {
                     child.direction_of_moves = "Goal";
@@ -91,18 +89,23 @@ namespace N_Puzzel_Project
                     Get_final_Path(child);
                 }
                 child.direction_of_moves = "Down";
-            }
+                check = Child_Open(child);
 
-            if (p.check_left_value() == true)
-            {
-                child.Left_movement();
-                child.Hamming();
-                child.Calculate_min_cost_of_hamming();
                 if (check == false)
                 {
                     PQ_list.Enqueue(child);
                     Open_child.Add(child.key, child);
                 }
+            }
+
+            if (p.check_left_value() == true)
+            {
+                Puzzel child = new Puzzel(p);
+                bool check;
+                child.Left_movement();
+                child.Hamming();
+                child.Calculate_min_cost_of_hamming();
+               
                 if (child.IS_reache_to_goal_hamming() == true)
                 {
                     child.direction_of_moves = "Goal";
@@ -110,19 +113,22 @@ namespace N_Puzzel_Project
                     Get_final_Path(child);
                 }
                 child.direction_of_moves = "Left";
-            }
+                check = Child_Open(child);
 
-            if (p.check_right_value() == true)
-            {
-                child.Right_movement();
-                child.Hamming();
-                child.Calculate_min_cost_of_hamming();
                 if (check == false)
                 {
                     PQ_list.Enqueue(child);
                     Open_child.Add(child.key, child);
                 }
+            }
 
+            if (p.check_right_value() == true)
+            {
+                Puzzel child = new Puzzel(p);
+                bool check;
+                child.Right_movement();
+                child.Hamming();
+                child.Calculate_min_cost_of_hamming();
                 if (child.IS_reache_to_goal_hamming() == true)
                 {
                     child.direction_of_moves = "Goal";
@@ -130,17 +136,31 @@ namespace N_Puzzel_Project
                     Get_final_Path(child);
                 }
                 child.direction_of_moves = "Right";
+
+                check = Child_Open(child);
+                if (check == false)
+                {
+                    PQ_list.Enqueue(child);
+                    Open_child.Add(child.key, child);
+                }
             }
 
         }
 
-        public Boolean Closed_child(Puzzel child)
+        public int Closed_child(Puzzel N)
         {
-            if (closed_child.ContainsKey(child.key))
+            if (closed_child.ContainsKey(N.key) == true)
             {
-                return true;
+                //check if cost of cloed one less than 
+                Puzzel check = closed_child[N.key];
+                if (check.cost < N.cost)
+                {
+                    PQ_list.Enqueue(check);
+                    Open_child.Add(check.key, check);
+                }
+                return 0;
             }
-            return false;
+            return 1;
         }
 
         public void A_Star_Algorithm_wiht_hamming(Puzzel First)
@@ -150,7 +170,7 @@ namespace N_Puzzel_Project
             while (PQ_list.PUZZLE.Count != 0)
             {
                 Puzzel New = new Puzzel(PQ_list.Dequeue(),0);
-                if (Closed_child(New) == true)
+                if (Closed_child(New) == 1)
                 {
                     closed_child.Add(New.key, New);
                     Create_New_Child(New);
