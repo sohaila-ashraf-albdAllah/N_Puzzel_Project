@@ -146,7 +146,7 @@ namespace N_Puzzel_Project
         {
             int Num_Of_Paths = Path_Of_Res.Count;
             int Num_Of_Movements = Num_Of_Paths - 1;
-            for (int i = 0; i < Num_Of_Paths; i++)
+            for (int i = Num_Of_Paths - 1; i >= 0; i--)
             {
                 Path_Of_Res[i].Display();
             }
