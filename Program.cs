@@ -91,9 +91,9 @@ namespace N_Puzzel_Project
             else
                 num = false;
             if (num)
-                Console.WriteLine("The Solution is Solvable");
+                Console.WriteLine("This puzzel is Solvable");
             else
-                Console.WriteLine("the Solution is Nan_Solvable");
+                Console.WriteLine("This puzzel  is Nan_Solvable");
             return num;
         }
         static void Main(string[] args)
@@ -106,7 +106,7 @@ namespace N_Puzzel_Project
             sr.ReadLine();
             int[,] arr = new int[cases, cases];
             int[] arr2 = new int[cases * cases];
-            int n = 0, counter = 0, j = 0, num = 0;
+            int n = 0, counter = 0;
             while (n < cases)
             {
                 string[] only_line = sr.ReadLine().Split(' ');
@@ -135,7 +135,6 @@ namespace N_Puzzel_Project
                 }
                 else if (choose == '2')
                 {
-                    Console.WriteLine("  Solvable ");
                     Console.WriteLine("  -----------------------------------  ");
                     Puzzel First = new Puzzel(cases, arr, indexi0, indexn0);
                     Manhattan A = new Manhattan();
