@@ -23,7 +23,7 @@ namespace N_Puzzel_Project
                 for (int j = 0; j < puzzel_size; j++)
                 {
                     puzzel_2D_array[i, j] = puzzel[i, j];
-                    key += puzzel_2D_array[i, j];
+                    key += puzzel[i, j];
                 }
             }
             blank_space_i = blank_i;
@@ -261,7 +261,7 @@ namespace N_Puzzel_Project
                     Console.Write(puzzel_2D_array[i, j]);
                     Console.Write(" ");
                 }
-                if (i == 0) //message of direction will appear in when i = 0
+                if (i == 1) //message of direction will appear in when i = 0
                 {
                     Console.WriteLine(" ----> " + direction_of_moves); 
                 }

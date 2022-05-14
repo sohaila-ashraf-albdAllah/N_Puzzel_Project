@@ -123,7 +123,7 @@ namespace N_Puzzel_Project
             PQ_list.Enqueue(First);
             while (PQ_list.PUZZLE.Count != 0)
             {
-                Puzzel New = new Puzzel(PQ_list.Dequeue());
+                Puzzel New = new Puzzel(PQ_list.Dequeue(), 0);
                 if(Closed_child(New) == 1)
                 {
                     closed_child.Add(New.key, New);
