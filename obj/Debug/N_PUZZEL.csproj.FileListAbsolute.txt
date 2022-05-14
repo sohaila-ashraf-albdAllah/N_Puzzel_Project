@@ -1,0 +1,13 @@
+C:\Program Files (x86)\Visual Studio 2013\Projects\N_PUZZEL\N_PUZZEL\bin\Debug\N_PUZZEL.exe.config
+C:\Program Files (x86)\Visual Studio 2013\Projects\N_PUZZEL\N_PUZZEL\obj\Debug\N_PUZZEL.csprojResolveAssemblyReference.cache
+C:\Program Files (x86)\Visual Studio 2013\Projects\N_PUZZEL\N_PUZZEL\bin\Debug\N_PUZZEL.exe
+C:\Program Files (x86)\Visual Studio 2013\Projects\N_PUZZEL\N_PUZZEL\bin\Debug\N_PUZZEL.pdb
+C:\Program Files (x86)\Visual Studio 2013\Projects\N_PUZZEL\N_PUZZEL\obj\Debug\N_PUZZEL.exe
+C:\Program Files (x86)\Visual Studio 2013\Projects\N_PUZZEL\N_PUZZEL\obj\Debug\N_PUZZEL.pdb
+E:\N_PUZZEL\N_PUZZEL\bin\Debug\N_PUZZEL.exe.config
+E:\N_PUZZEL\N_PUZZEL\bin\Debug\N_PUZZEL.exe
+E:\N_PUZZEL\N_PUZZEL\bin\Debug\N_PUZZEL.pdb
+E:\N_PUZZEL\N_PUZZEL\obj\Debug\N_PUZZEL.csproj.AssemblyReference.cache
+E:\N_PUZZEL\N_PUZZEL\obj\Debug\N_PUZZEL.csproj.CoreCompileInputs.cache
+E:\N_PUZZEL\N_PUZZEL\obj\Debug\N_PUZZEL.exe
+E:\N_PUZZEL\N_PUZZEL\obj\Debug\N_PUZZEL.pdb
