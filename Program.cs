@@ -134,12 +134,14 @@ namespace N_Puzzel_Project
                     Puzzel First = new Puzzel(cases, arr, indexi0, indexn0);
                     Hamming A = new Hamming();
                     A.A_Star_Algorithm_wiht_hamming(First);
+                    //A.Get_final_Path();
                 }
                 else if (choose == '2')
                 {
                     Puzzel First = new Puzzel(cases, arr, indexi0, indexn0);
                     Manhattan A = new Manhattan();
                     A.A__Algorithm(First);
+                    A.Display_path();
                 }
                 else if(choose == '3'){
 
