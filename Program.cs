@@ -98,7 +98,6 @@ namespace N_Puzzel_Project
         }
         static void Main(string[] args)
         {
-              min:
             FileStream file_puzzle = choosefile();
             StreamReader sr = new StreamReader(file_puzzle);
             string[] vertices = sr.ReadLine().Split(' ');
@@ -151,11 +150,6 @@ namespace N_Puzzel_Project
                     Console.WriteLine("Invalid Choice!");
                 }
             }
-            Console.Write("Do you want to run any test again now (y/n)? ");
-            char ch = (char)Console.Read();
-            if (ch == 'y' || ch == 'Y')
-                goto min;
-
         }
     }
 }
