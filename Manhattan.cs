@@ -11,29 +11,38 @@ namespace N_Puzzel_Project
         public Priority_Queue PQ_list = new Priority_Queue();
         public List<Puzzel> Path_Of_Res = new List<Puzzel>();
 
-        public void A__Algorithm(Puzzel First)
+        public int Closed_child(Puzzel N)
         {
-            Open_child.Add(First.key, First);
-            PQ_list.Enqueue(First);
-            while (PQ_list.PUZZLE.Count != 0)
+            if (closed_child.ContainsKey(N.key))
             {
-                Puzzel New = new Puzzel(PQ_list.Dequeue());
-                if(Closed_child(New) == 1)
+                //check if cost of cloed one less than 
+                Puzzel check = closed_child[N.key];
+                if (check.cost < N.cost)
                 {
-                    closed_child.Add(New.key, New);
-                    Create_New_Child(New);
+                    PQ_list.Enqueue(check);
+                    Open_child.Add(check.key, check);
                 }
+                return 0;
             }
+            return 1;
+        }
+        public int Child_Open(Puzzel N)
+        {
+            if (Open_child.ContainsKey(N.key))
+            {
+                return 0;
+            }
+            return 1;
         }
         public void Create_New_Child(Puzzel N)
         {
-            if( N.check_up_value()) 
+            if (N.check_up_value())
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.UP_movement();
                 New_puzzel.manhattan();
                 New_puzzel.Calculate_min_cost_Manhattan();
-                if(New_puzzel.IS_reache_to_goal_manhattan())
+                if (New_puzzel.IS_reache_to_goal_manhattan())
                 {
                     New_puzzel.direction_of_moves = "Goal";
                     Path_Of_Res.Add(New_puzzel);
@@ -44,7 +53,7 @@ namespace N_Puzzel_Project
                 if (flag == 1)
                 {
                     PQ_list.Enqueue(New_puzzel);
-                    Open_child.Add(New_puzzel.key, New_puzzel); 
+                    Open_child.Add(New_puzzel.key, New_puzzel);
                 }
             }
             if (N.check_down_value())
@@ -108,28 +117,30 @@ namespace N_Puzzel_Project
                 }
             }
         }
-        public int Closed_child(Puzzel N)
+        public void A__Algorithm(Puzzel First)
         {
-            if(closed_child.ContainsKey( N.key))
+            Open_child.Add(First.key, First);
+            PQ_list.Enqueue(First);
+            while (PQ_list.PUZZLE.Count != 0)
             {
-                //check if cost of cloed one less than 
-                Puzzel check = closed_child[N.key];
-                if (check.cost < N.cost)
+                Puzzel New = new Puzzel(PQ_list.Dequeue());
+                if(Closed_child(New) == 1)
                 {
-                    PQ_list.Enqueue(check);
-                    Open_child.Add(check.key, check);
+                    closed_child.Add(New.key, New);
+                    Create_New_Child(New);
                 }
-                return 0;
             }
-            return 1;
         }
-        public int Child_Open(Puzzel N)
+        public void get_Entire_Path(Puzzel Final)
         {
-            if (Open_child.ContainsKey(N.key))
+            Puzzel path = Final.parent;
+            while (path.parent != null)
             {
-                return 0;
+                Path_Of_Res.Add(path);
+                path = path.parent;
             }
-            return 1;
+            Path_Of_Res.Add(path);
+            Display_path();
         }
         public void Display_path()
         {
@@ -143,17 +154,6 @@ namespace N_Puzzel_Project
             Console.Write(" Number Of Movements = " + Num_Of_Movements);
             Console.WriteLine();
             Environment.Exit(0);
-        }
-        public void get_Entire_Path(Puzzel Final)
-        {
-            Puzzel path = Final.parent;
-            while (path.parent != null)
-            {
-                Path_Of_Res.Add(path);
-                path = path.parent;
-            }
-            Path_Of_Res.Add(path);
-            Display_path();
         }
     }
 }
