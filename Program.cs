@@ -135,7 +135,6 @@ namespace N_Puzzel_Project
                 }
                 else if (choose == '2')
                 {
-                    Console.WriteLine("  Solvable ");
                     Console.WriteLine("  -----------------------------------  ");
                     Puzzel First = new Puzzel(cases, arr, indexi0, indexn0);
                     Manhattan A = new Manhattan();
