@@ -97,11 +97,8 @@ namespace N_Puzzel_Project
         {
             FileStream file_puzzle = choosefile();
             StreamReader sr = new StreamReader(file_puzzle);
-            while (sr.Peek() != -1)
-            {
                 string[] vertices = sr.ReadLine().Split(' ');
-            int cases = int.Parse(vertices[0]);
-            
+            int cases = int.Parse(vertices[0]); 
             sr.ReadLine();
             int[,] arr = new int[cases, cases];
             int[] arr2 = new int[cases * cases];
@@ -154,8 +151,8 @@ namespace N_Puzzel_Project
                 else
                    Console.WriteLine(" - No Feasible Solution For The Given Board ");
                     }
-                }
-            }
+               }
+            
         
     }
 
