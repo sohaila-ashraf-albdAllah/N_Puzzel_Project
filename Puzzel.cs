@@ -161,14 +161,16 @@ namespace N_Puzzel_Project
          *   1  | 0  2  5
          *   2  | 7  8  6
          */
-        public Puzzel UP_movement() 
+        public int UP_movement() 
         {           
             int swap_part = puzzel_2D_array[blank_space_i - 1, blank_space_j];
             puzzel_2D_array[blank_space_i,blank_space_j] = swap_part;
             swap_part = 0;  
             // To know where blank space is it 
             blank_space_i = blank_space_i - 1;
-            return this;
+            return puzzel_2D_array[blank_space_i, blank_space_j];
+            return swap_part;
+            return blank_space_i;
         }
       public Boolean check_up_value ()
         {
@@ -182,14 +184,16 @@ namespace N_Puzzel_Project
             }
         }
 
-        public Puzzel Down_movement()
+        public int Down_movement()
         {
             int swap_part = puzzel_2D_array[blank_space_i + 1, blank_space_j];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0;  //position = 0 
             // To know where blank space is it 
             blank_space_i = blank_space_i + 1;
-            return this;
+            return puzzel_2D_array[blank_space_i, blank_space_j];
+            return swap_part;
+            return blank_space_i;
         }
         public Boolean check_down_value()
         {
@@ -202,14 +206,16 @@ namespace N_Puzzel_Project
                 return false;
             }
         }
-        public Puzzel Left_movement()
+        public int Left_movement()
         {
             int swap_part = puzzel_2D_array[blank_space_i, blank_space_j - 1];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0; //position = 0 
             // To know where blank space is it 
             blank_space_j = blank_space_j - 1;
-            return this;
+            return puzzel_2D_array[blank_space_i, blank_space_j];
+            return swap_part;
+            return blank_space_j;
         }
         public Boolean check_left_value()
         {
@@ -222,14 +228,16 @@ namespace N_Puzzel_Project
                 return false;
             }
         }
-        public Puzzel Right_movement()
+        public int Right_movement()
         {
             int swap_part = puzzel_2D_array[blank_space_i, blank_space_j + 1];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0; //position = 0 
             // To know where blank space is it 
             blank_space_j = blank_space_j + 1;
-            return this;
+            return puzzel_2D_array[blank_space_i, blank_space_j];
+            return swap_part;
+            return blank_space_j;
         }
         public Boolean check_right_value()
         {
