@@ -110,8 +110,15 @@ namespace N_Puzzel_Project
         }
         public int Closed_child(Puzzel N)
         {
-            if(closed_child.ContainsKey(N.key))
+            if(closed_child.ContainsKey( N.key))
             {
+                //check if cost of cloed one less than 
+                Puzzel check = closed_child[N.key];
+                if (check.cost < N.cost)
+                {
+                    PQ_list.Enqueue(check);
+                    Open_child.Add(check.key, check);
+                }
                 return 0;
             }
             return 1;
