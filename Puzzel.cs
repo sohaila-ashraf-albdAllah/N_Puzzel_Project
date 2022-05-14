@@ -17,9 +17,7 @@ namespace N_Puzzel_Project
         {
             puzzel_2D_array = puzzel;
             puzzel_size = size;
-            blank_space_i = blank_i;
-            blank_space_j = blank_j;
-            direction_of_moves = "Start";
+         
             for (int i = 0; i < puzzel_size; i++)
             {
                 for (int j = 0; j < puzzel_size; j++)
@@ -28,13 +26,37 @@ namespace N_Puzzel_Project
                     key += puzzel[i, j];
                 }
             }
+            blank_space_i = blank_i;
+            blank_space_j = blank_j;
+            direction_of_moves = "Start";
             Hamming();
             manhattan();
             number_of_level = 0;
             parent = null;
-        }  
-        //copy constructor 
-         public Puzzel(Puzzel p)
+        }
+        public Puzzel(Puzzel p, int x)
+        {
+            puzzel_size = p.puzzel_size;
+            puzzel_2D_array = new int[puzzel_size, puzzel_size];
+            for (int i = 0; i < puzzel_size; i++)
+            {
+                for (int j = 0; j < puzzel_size; j++)
+                {
+                    puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j];
+                }
+            }
+            blank_space_i = p.blank_space_i;
+            blank_space_j = p.blank_space_j;
+            number_of_level = p.number_of_level;
+            parent = p;
+            cost = p.cost;
+            key = p.key;
+            hamming_value = p.hamming_value;
+            manhattan_value = p.manhattan_value;
+        }
+
+            //copy constructor 
+            public Puzzel(Puzzel p)
          {
             puzzel_size = p.puzzel_size;
             puzzel_2D_array = new int[puzzel_size, puzzel_size];
@@ -139,13 +161,14 @@ namespace N_Puzzel_Project
          *   1  | 0  2  5
          *   2  | 7  8  6
          */
-        public void UP_movement() 
+        public Puzzel UP_movement() 
         {           
             int swap_part = puzzel_2D_array[blank_space_i - 1, blank_space_j];
             puzzel_2D_array[blank_space_i,blank_space_j] = swap_part;
             swap_part = 0;  
             // To know where blank space is it 
             blank_space_i = blank_space_i - 1;
+            return this;
         }
       public Boolean check_up_value ()
         {
@@ -159,13 +182,14 @@ namespace N_Puzzel_Project
             }
         }
 
-        public void Down_movement()
+        public Puzzel Down_movement()
         {
             int swap_part = puzzel_2D_array[blank_space_i + 1, blank_space_j];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0;  //position = 0 
             // To know where blank space is it 
             blank_space_i = blank_space_i + 1;
+            return this;
         }
         public Boolean check_down_value()
         {
@@ -178,13 +202,14 @@ namespace N_Puzzel_Project
                 return false;
             }
         }
-        public void Left_movement()
+        public Puzzel Left_movement()
         {
             int swap_part = puzzel_2D_array[blank_space_i, blank_space_j - 1];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0; //position = 0 
             // To know where blank space is it 
             blank_space_j = blank_space_j - 1;
+            return this;
         }
         public Boolean check_left_value()
         {
@@ -197,13 +222,14 @@ namespace N_Puzzel_Project
                 return false;
             }
         }
-        public void Right_movement()
+        public Puzzel Right_movement()
         {
             int swap_part = puzzel_2D_array[blank_space_i, blank_space_j + 1];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0; //position = 0 
             // To know where blank space is it 
             blank_space_j = blank_space_j + 1;
+            return this;
         }
         public Boolean check_right_value()
         {
