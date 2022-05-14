@@ -151,11 +151,6 @@ namespace N_Puzzel_Project
         {
             if (blank_space_i != 0)
             {
-                UP_movement();
-                Hamming();
-                manhattan();
-                Calculate_min_cost_of_hamming();
-                Calculate_min_cost_Manhattan();
                 return true;
             }
             else
@@ -176,11 +171,6 @@ namespace N_Puzzel_Project
         {
             if (blank_space_i != puzzel_size - 1)
             {
-                UP_movement();
-                Hamming();
-                manhattan();
-                Calculate_min_cost_of_hamming();
-                Calculate_min_cost_Manhattan();
                 return true;
             }
             else
@@ -200,11 +190,6 @@ namespace N_Puzzel_Project
         {
             if (blank_space_j != 0)
             {
-                UP_movement();
-                Hamming();
-                manhattan();
-                Calculate_min_cost_of_hamming();
-                Calculate_min_cost_Manhattan();
                 return true;
             }
             else
@@ -212,7 +197,7 @@ namespace N_Puzzel_Project
                 return false;
             }
         }
-        public void right_movement()
+        public void Right_movement()
         {
             int swap_part = puzzel_2D_array[blank_space_i, blank_space_j + 1];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
@@ -224,11 +209,6 @@ namespace N_Puzzel_Project
         {
             if (blank_space_j != puzzel_size - 1)
             {
-                UP_movement();
-                Hamming();
-                manhattan();
-                Calculate_min_cost_of_hamming();
-                Calculate_min_cost_Manhattan();
                 return true;
             }
             else
@@ -237,6 +217,7 @@ namespace N_Puzzel_Project
             }
         }       
         /*********************************************End of movement********************************************/
+       
         public void Display()
         {
             for (int i = 0; i < puzzel_size; i++)
