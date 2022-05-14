@@ -89,8 +89,7 @@ namespace N_Puzzel_Project
                     if (puzzel_2D_array[i, j] != correct_position && puzzel_2D_array[i, j] != 0) //blank space
                     {
                         miss_position++;
-                    }
-                    else 
+                    } 
                     correct_position++;
                 }
             }
@@ -100,23 +99,20 @@ namespace N_Puzzel_Project
         {
             int cnt = 0;
             int RES = 0;
-            int var1Row = 0, var2Col = 0;
-            while (var1Row < puzzel_size)
+            for (int row = 0; row < puzzel_size; row++)
             {
-                while (var2Col < puzzel_size)
+                for (int col = 0; col < puzzel_size; col++)
                 {
-                    key += puzzel_2D_array[var1Row, var2Col];
-                    int val = puzzel_2D_array[var1Row, var2Col];
+                    this.key += this.puzzel_2D_array[row, col];
+                    int val = this.puzzel_2D_array[row, col];
                     RES++;
                     if (val != 0 && val != RES)
                     {
                         int temp1 = ((val - 1) / puzzel_size);
                         int temp2 = ((val - 1) % puzzel_size);
-                        cnt += Math.Abs(var1Row - temp1) + Math.Abs(var2Col - temp2);
+                        cnt += Math.Abs(row - temp1) + Math.Abs(col - temp2);
                     }
-                    var2Col++;
                 }
-                var1Row++;
             }
             manhattan_value = cnt;
         }
@@ -165,7 +161,8 @@ namespace N_Puzzel_Project
         {           
             int swap_part = puzzel_2D_array[blank_space_i - 1, blank_space_j];
             puzzel_2D_array[blank_space_i,blank_space_j] = swap_part;
-            swap_part = 0;  
+            swap_part = 0;
+            puzzel_2D_array[blank_space_i - 1, blank_space_j] = swap_part;
             // To know where blank space is it 
             blank_space_i = blank_space_i - 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
@@ -187,6 +184,7 @@ namespace N_Puzzel_Project
             int swap_part = puzzel_2D_array[blank_space_i + 1, blank_space_j];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0;  //position = 0 
+            puzzel_2D_array[blank_space_i + 1, blank_space_j] = swap_part;
             // To know where blank space is it 
             blank_space_i = blank_space_i + 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
@@ -208,6 +206,7 @@ namespace N_Puzzel_Project
             int swap_part = puzzel_2D_array[blank_space_i, blank_space_j - 1];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0; //position = 0 
+            puzzel_2D_array[blank_space_i, blank_space_j - 1] = swap_part;
             // To know where blank space is it 
             blank_space_j = blank_space_j - 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
@@ -228,6 +227,7 @@ namespace N_Puzzel_Project
             int swap_part = puzzel_2D_array[blank_space_i, blank_space_j + 1];
             puzzel_2D_array[blank_space_i, blank_space_j] = swap_part;
             swap_part = 0; //position = 0 
+            puzzel_2D_array[blank_space_i, blank_space_j + 1] = swap_part;
             // To know where blank space is it 
             blank_space_j = blank_space_j + 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
