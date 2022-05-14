@@ -169,8 +169,6 @@ namespace N_Puzzel_Project
             // To know where blank space is it 
             blank_space_i = blank_space_i - 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
-            return swap_part;
-            return blank_space_i;
         }
       public Boolean check_up_value ()
         {
@@ -192,8 +190,7 @@ namespace N_Puzzel_Project
             // To know where blank space is it 
             blank_space_i = blank_space_i + 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
-            return swap_part;
-            return blank_space_i;
+
         }
         public Boolean check_down_value()
         {
@@ -214,8 +211,6 @@ namespace N_Puzzel_Project
             // To know where blank space is it 
             blank_space_j = blank_space_j - 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
-            return swap_part;
-            return blank_space_j;
         }
         public Boolean check_left_value()
         {
@@ -236,8 +231,6 @@ namespace N_Puzzel_Project
             // To know where blank space is it 
             blank_space_j = blank_space_j + 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
-            return swap_part;
-            return blank_space_j;
         }
         public Boolean check_right_value()
         {

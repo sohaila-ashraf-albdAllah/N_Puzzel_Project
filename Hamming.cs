@@ -19,10 +19,10 @@ namespace N_Puzzel_Project
                 prnt = prnt.parent;
             }
             Path_Of_Res.Add(prnt);
-            Display();
+            Display_();
         }
 
-        public void Display()
+        public void Display_()
         {
             int num = Path_Of_Res.Count;
             for (int i = num - 1; i >= 0; i--)
@@ -38,7 +38,7 @@ namespace N_Puzzel_Project
         }
         public Boolean Child_Open(Puzzel child)
         {
-            if (Open_child.ContainsKey(child.key))
+            if (Open_child.ContainsKey(child.key) == true)
             {
                 return true;
             }
