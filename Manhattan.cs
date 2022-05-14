@@ -13,7 +13,7 @@ namespace N_Puzzel_Project
 
         public int Closed_child(Puzzel N)
         {
-            if (closed_child.ContainsKey(N.key))
+            if (closed_child.ContainsKey(N.key) == true)
             {
                 //check if cost of cloed one less than 
                 Puzzel check = closed_child[N.key];
@@ -28,7 +28,7 @@ namespace N_Puzzel_Project
         }
         public int Child_Open(Puzzel N)
         {
-            if (Open_child.ContainsKey(N.key))
+            if (Open_child.ContainsKey(N.key) == true)
             {
                 return 0;
             }
@@ -36,13 +36,13 @@ namespace N_Puzzel_Project
         }
         public void Create_New_Child(Puzzel N)
         {
-            if (N.check_up_value())
+            if (N.check_up_value() == true)
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.UP_movement();
                 New_puzzel.manhattan();
                 New_puzzel.Calculate_min_cost_Manhattan();
-                if (New_puzzel.IS_reache_to_goal_manhattan())
+                if (New_puzzel.IS_reache_to_goal_manhattan() == true)
                 {
                     New_puzzel.direction_of_moves = "Goal";
                     Path_Of_Res.Add(New_puzzel);
@@ -56,13 +56,13 @@ namespace N_Puzzel_Project
                     Open_child.Add(New_puzzel.key, New_puzzel);
                 }
             }
-            if (N.check_down_value())
+            if (N.check_down_value() == true)
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.Down_movement();
                 New_puzzel.manhattan();
                 New_puzzel.Calculate_min_cost_Manhattan();
-                if (New_puzzel.IS_reache_to_goal_manhattan())
+                if (New_puzzel.IS_reache_to_goal_manhattan() == true)
                 {
                     New_puzzel.direction_of_moves = "Goal";
                     Path_Of_Res.Add(New_puzzel);
@@ -76,13 +76,13 @@ namespace N_Puzzel_Project
                     Open_child.Add(New_puzzel.key, New_puzzel);
                 }
             }
-            if (N.check_right_value())
+            if (N.check_right_value() == true)
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.Right_movement();
                 New_puzzel.manhattan();
                 New_puzzel.Calculate_min_cost_Manhattan();
-                if (New_puzzel.IS_reache_to_goal_manhattan())
+                if (New_puzzel.IS_reache_to_goal_manhattan() == true)
                 {
                     New_puzzel.direction_of_moves = "Goal";
                     Path_Of_Res.Add(New_puzzel);
@@ -96,13 +96,13 @@ namespace N_Puzzel_Project
                     Open_child.Add(New_puzzel.key, New_puzzel);
                 }
             }
-            if (N.check_left_value())
+            if (N.check_left_value() == true)
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.Left_movement();
                 New_puzzel.manhattan();
                 New_puzzel.Calculate_min_cost_Manhattan();
-                if (New_puzzel.IS_reache_to_goal_manhattan())
+                if (New_puzzel.IS_reache_to_goal_manhattan() == true)
                 {
                     New_puzzel.direction_of_moves = "Goal";
                     Path_Of_Res.Add(New_puzzel);
