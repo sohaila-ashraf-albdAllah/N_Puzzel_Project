@@ -19,6 +19,11 @@ namespace N_Puzzel_Project
                 prnt = prnt.parent;
             }
             Path_Of_Res.Add(prnt);
+            Display();
+        }
+
+        public void Display()
+        {
             int num = Path_Of_Res.Count;
             for (int i = num - 1; i >= 0; i--)
             {
@@ -31,7 +36,6 @@ namespace N_Puzzel_Project
             Console.Write("----------------------------------------");
             Environment.Exit(0);
         }
-
         public Boolean Child_Open(Puzzel child)
         {
             if (Open_child.ContainsKey(child.key))
@@ -45,8 +49,8 @@ namespace N_Puzzel_Project
 
         public void Create_New_Child(Puzzel p)
         {
-            Boolean check = true;
             Puzzel child = new Puzzel(p);
+            Boolean check;
             check = Child_Open(child);
 
             if (p.check_up_value() == true)
@@ -55,7 +59,7 @@ namespace N_Puzzel_Project
                 child.Hamming();
                 child.Calculate_min_cost_of_hamming();
 
-                if (check == true)
+                if (check == false)
                 {
                     PQ_list.Enqueue(child);
                     Open_child.Add(child.key, child);
@@ -75,7 +79,7 @@ namespace N_Puzzel_Project
                 child.Down_movement();
                 child.Hamming();
                 child.Calculate_min_cost_of_hamming();
-                if (check == true)
+                if (check == false)
                 {
                     PQ_list.Enqueue(child);
                     Open_child.Add(child.key, child);
@@ -94,7 +98,7 @@ namespace N_Puzzel_Project
                 child.Left_movement();
                 child.Hamming();
                 child.Calculate_min_cost_of_hamming();
-                if (check == true)
+                if (check == false)
                 {
                     PQ_list.Enqueue(child);
                     Open_child.Add(child.key, child);
@@ -113,7 +117,7 @@ namespace N_Puzzel_Project
                 child.Right_movement();
                 child.Hamming();
                 child.Calculate_min_cost_of_hamming();
-                if (check == true)
+                if (check == false)
                 {
                     PQ_list.Enqueue(child);
                     Open_child.Add(child.key, child);
@@ -145,7 +149,7 @@ namespace N_Puzzel_Project
             PQ_list.Enqueue(First);
             while (PQ_list.PUZZLE.Count != 0)
             {
-                Puzzel New = new Puzzel(PQ_list.Dequeue());
+                Puzzel New = new Puzzel(PQ_list.Dequeue(),0);
                 if (Closed_child(New) == true)
                 {
                     closed_child.Add(New.key, New);

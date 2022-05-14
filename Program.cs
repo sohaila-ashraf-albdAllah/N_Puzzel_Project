@@ -134,6 +134,7 @@ namespace N_Puzzel_Project
                     Puzzel First = new Puzzel(cases, arr, indexi0, indexn0);
                     Hamming A = new Hamming();
                     A.A_Star_Algorithm_wiht_hamming(First);
+                    A.Display();
                 }
                 else if (choose == '2')
                 {
