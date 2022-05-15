@@ -11,6 +11,7 @@ namespace N_Puzzel_Project
     {
         static int indexn0, indexi0;
         static string choice;
+        public static int x, y = 0;
         static FileStream choosefile()
         {
             FileStream d;
@@ -97,15 +98,17 @@ namespace N_Puzzel_Project
         {
             FileStream file_puzzle = choosefile();
             StreamReader sr = new StreamReader(file_puzzle);
-                string[] vertices = sr.ReadLine().Split(' ');
-            int cases = int.Parse(vertices[0]); 
-            sr.ReadLine();
+            string[] vertices = sr.ReadLine().Split(' ');
+            int cases = int.Parse(vertices[0]);
             int[,] arr = new int[cases, cases];
             int[] arr2 = new int[cases * cases];
             int n = 0, counter = 0;
             while (n < cases)
             {
-                string[] only_line = sr.ReadLine().Split(' ');
+                String line = sr.ReadLine();
+                if (line == "")
+                    continue;
+                string[] only_line = line.Split(' ');
                 int i = 0;
                 while (i < cases)
                 {
@@ -121,38 +124,39 @@ namespace N_Puzzel_Project
                 }
                 n++;
             }
-                    Console.WriteLine("Is it A kind of model\n" + "[1]Hamming\n" + "[2]Manhattan\n" + "Enter your choice 1 or 2: ");
-                    string choose = Console.ReadLine();
-
-                if (choose == "1")
-                {
-                    {
-                        // Check If Board Is Solvable Or Not 
-                        if (isSolvable(cases, arr2))
-                        {
-                            Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
-                            Hamming A = new Hamming();
-                            A.A_Star_Algorithm_wiht_hamming(start);
-                            A.Display_();
-                        }
-
-                    }
-                }
-                else if (choose == "2")
+            Console.WriteLine("Is it A kind of model\n" + "[1]Hamming\n" + "[2]Manhattan\n" + "Enter your choice 1 or 2: ");
+            string choose = Console.ReadLine();
+            int x, y = 0;
+            x = Environment.TickCount;
+            if (choose == "1")
+            {
                 {
                     // Check If Board Is Solvable Or Not 
                     if (isSolvable(cases, arr2))
                     {
                         Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
-                        Manhattan A = new Manhattan();
-                        A.A__Algorithm(start);
+                        Hamming A = new Hamming();
+                        A.A_Star_Algorithm_wiht_hamming(start);
+                        A.Display_();
                     }
+
                 }
-                else
-                   Console.WriteLine(" - No Feasible Solution For The Given Board ");
-                    }
-               }
-            
-        
+            }
+            else if (choose == "2")
+            {
+                // Check If Board Is Solvable Or Not 
+                if (isSolvable(cases, arr2))
+                {
+                    Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
+                    Manhattan A = new Manhattan();
+                    A.A__Algorithm(start);
+                }
+            }
+            else
+                Console.WriteLine(" - No Feasible Solution For The Given Board ");
+            y = Environment.TickCount;
+            Console.WriteLine("Time Taken In MS : " + (y - x));
+        }
     }
+}
 
