@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace N_Puzzel_Project
-{
+{        
+
     class Hamming
     {
         public Dictionary<string, Puzzel> Open_child = new Dictionary<string, Puzzel>();
@@ -21,20 +22,23 @@ namespace N_Puzzel_Project
             Path_Of_Res.Add(prnt);
             Display_();
         }
-
+        public static int l = 0;
         public void Display_()
         {
-            int num = Path_Of_Res.Count;
-            for (int i = num - 1; i >= 0; i--)
+            if (l == 0)
             {
-                Path_Of_Res[i].Display();
+                int num = Path_Of_Res.Count;
+                for (int i = num - 1; i >= 0; i--)
+                {
+                    Path_Of_Res[i].Display();
+                }
+                Console.Write("----------------------------------------");
+                Console.WriteLine();
+                Console.Write("Number of Movements = " + (num - 1));
+                Console.WriteLine();
+                Console.Write("----------------------------------------");
             }
-            Console.Write("----------------------------------------");
-            Console.WriteLine();
-            Console.Write("Number of Movements = " + (num - 1));
-            Console.WriteLine();
-            Console.Write("----------------------------------------");
-            Environment.Exit(0);
+            l = 1;
         }
         public Boolean Child_Open(Puzzel child)
         {
