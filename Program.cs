@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
-
 namespace N_Puzzel_Project
 {
     class Program
@@ -148,10 +147,9 @@ namespace N_Puzzel_Project
                 }
             }
             else
-                Console.WriteLine(" - No Feasible Solution For The Given Board ");
+                Console.WriteLine(" No Feasible Solution For The Given Board ");
             y = Environment.TickCount;
             Console.WriteLine("Time Taken In MS : " + (y - x));
         }
     }
 }
-
