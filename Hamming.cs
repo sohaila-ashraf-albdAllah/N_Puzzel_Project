@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace N_Puzzel_Project
-{
+{        
+
     class Hamming
     {
         public Dictionary<string, Puzzel> Open_child = new Dictionary<string, Puzzel>();
@@ -22,7 +23,6 @@ namespace N_Puzzel_Project
             Path_Of_Res.Add(prnt);
             Display_();
         }
-
         public void Display_()
         {
             if (Exit == 0) 
