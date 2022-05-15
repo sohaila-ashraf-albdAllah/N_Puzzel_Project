@@ -22,11 +22,9 @@ namespace N_Puzzel_Project
             Path_Of_Res.Add(prnt);
             Display_();
         }
-        public static int l = 0;
         public void Display_()
         {
-            if (l == 0)
-            {
+
                 int num = Path_Of_Res.Count;
                 for (int i = num - 1; i >= 0; i--)
                 {
@@ -38,7 +36,6 @@ namespace N_Puzzel_Project
                 Console.WriteLine();
                 Console.Write("----------------------------------------");
             }
-            l = 1;
         }
         public Boolean Child_Open(Puzzel child)
         {

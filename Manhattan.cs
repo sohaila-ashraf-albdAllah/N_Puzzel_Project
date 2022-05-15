@@ -142,11 +142,8 @@ namespace N_Puzzel_Project
             Path_Of_Res.Add(path);
             Display_path();
         }
-        public static int l = 0;
         public void Display_path()
         {
-            if (l == 0)
-            {
                 int Num_Of_Paths = Path_Of_Res.Count;
                 int Num_Of_Movements = Num_Of_Paths - 1;
                 for (int i = Num_Of_Paths - 1; i >= 0; i--)
@@ -156,8 +153,7 @@ namespace N_Puzzel_Project
                 Console.WriteLine();
                 Console.Write(" Number Of Movements = " + Num_Of_Movements);
                 Console.WriteLine();
-            }
-            l = 1;
+
         }
     }
 }
