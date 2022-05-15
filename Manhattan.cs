@@ -153,7 +153,7 @@ namespace N_Puzzel_Project
             Console.WriteLine();
             Console.Write(" Number Of Movements = " + Num_Of_Movements);
             Console.WriteLine();
-            Environment.Exit(0);
+           // Environment.Exit(0);
         }
     }
 }
