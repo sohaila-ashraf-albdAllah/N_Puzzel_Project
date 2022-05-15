@@ -50,7 +50,7 @@ namespace N_Puzzel_Project
                 else if (txt == "10") return d = new FileStream("Testcases/Complete/Unsolvable puzzles/99 Puzzle - Unsolvable Case 1.txt", FileMode.Open, FileAccess.Read);
                 else if (txt == "11") return d = new FileStream("Testcases/Complete/Unsolvable puzzles/99 Puzzle - Unsolvable Case 2.txt", FileMode.Open, FileAccess.Read);
                 else if (txt == "12") return d = new FileStream("Testcases/Complete/Unsolvable puzzles/9999 Puzzle.txt", FileMode.Open, FileAccess.Read);
-                else if (txt == "13") return d = new FileStream("Testcases/Complete/V. Large test case/TEST.txt", FileMode.Open, FileAccess.Read);
+                else if (txt == "13") return d = new FileStream("TEST.txt", FileMode.Open, FileAccess.Read);
                 else Console.WriteLine("invalid source\n" + "press a or b to choose again\n");
             }
             goto HERE;
@@ -144,6 +144,7 @@ namespace N_Puzzel_Project
                     Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                     Manhattan A = new Manhattan();
                     A.A__Algorithm(start);
+                    A.Display_path();
                 }
             }
             else

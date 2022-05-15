@@ -11,6 +11,7 @@ namespace N_Puzzel_Project
         public Dictionary<string, Puzzel> closed_child = new Dictionary<string, Puzzel>();
         public Priority_Queue PQ_list = new Priority_Queue();
         public List<Puzzel> Path_Of_Res = new List<Puzzel>();
+        static int Exit = 0;
         public void Get_final_Path(Puzzel final)
         {
             Puzzel prnt = final.parent;
@@ -24,7 +25,8 @@ namespace N_Puzzel_Project
         }
         public void Display_()
         {
-
+            if (Exit == 0) 
+            {
                 int num = Path_Of_Res.Count;
                 for (int i = num - 1; i >= 0; i--)
                 {
@@ -36,6 +38,7 @@ namespace N_Puzzel_Project
                 Console.WriteLine();
                 Console.Write("----------------------------------------");
             }
+            Exit = 1;
         }
         public Boolean Child_Open(Puzzel child)
         {
