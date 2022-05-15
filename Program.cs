@@ -144,6 +144,7 @@ namespace N_Puzzel_Project
                     Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                     Manhattan A = new Manhattan();
                     A.A__Algorithm(start);
+                    A.Display_path();
                 }
             }
             else
