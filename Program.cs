@@ -119,7 +119,7 @@ namespace N_Puzzel_Project
                 }
                 n++;
             }
-            Console.WriteLine("Is it A kind of model\n" + "[1]Hamming\n" + "[2]Manhattan\n" + "Enter your choice 1 or 2: ");
+            Console.WriteLine("Is it A kind of model\n" + "[1]Hamming\n" + "[2]Manhattan\n" + "[3]Manhattan & Hamming\n" + "Enter your choice 1 , 2 OR 3 : ");
             string choose = Console.ReadLine();
             int x, y = 0;
             x = Environment.TickCount;
@@ -145,6 +145,25 @@ namespace N_Puzzel_Project
                     Manhattan A = new Manhattan();
                     A.A__Algorithm(start);
                     A.Display_path();
+                }
+            }
+            else if (choose == "3")
+            {
+                // Check If Board Is Solvable Or Not 
+                if (isSolvable(cases, arr2))
+                {
+                    Console.WriteLine("-----------Hamming ---------");
+                    Console.WriteLine();
+                    Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
+                    Hamming A = new Hamming();
+                    A.A_Star_Algorithm_wiht_hamming(start);
+                    A.Display_();
+                    Console.WriteLine("------------Manhattan --------");
+                    Console.WriteLine();
+                    Puzzel start2 = new Puzzel(cases, arr, indexn0, indexi0);
+                    Manhattan A2 = new Manhattan();
+                    A2.A__Algorithm(start2);
+                    A2.Display_path();
                 }
             }
             else
