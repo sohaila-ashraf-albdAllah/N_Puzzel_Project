@@ -153,9 +153,11 @@ namespace N_Puzzel_Project
                 {
                     Path_Of_Res[i].Display();
                 }
+                Console.Write("----------------------------------------");
                 Console.WriteLine();
                 Console.Write(" Number Of Movements = " + Num_Of_Movements);
                 Console.WriteLine();
+                Console.Write("----------------------------------------");
             }      
             Exit = 1;
         }

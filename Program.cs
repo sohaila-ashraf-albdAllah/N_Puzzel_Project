@@ -36,7 +36,7 @@ namespace N_Puzzel_Project
             }
             else if (choice == "b" || choice == "B")
             {
-                Console.WriteLine("Is it A kind of text\n" + "1-50 Puzzle\n" + "2-99 Puzzle - 1\n" + "3-99 Puzzle - 2\n" + "4-9999 Puzzle\n" + "5-15 Puzzle 1\n" + "6-15 Puzzle 3\n" + "7-15 Puzzle 4\n" + "8-15 Puzzle 5\n" + "9-15 Puzzle 1 - Unsolvable\n" + "10-99 Puzzle - Unsolvable Case 1\n" + "11-99 Puzzle - Unsolvable Case 2\n" + "12-9999 Puzzle  - Unsolvable case\n" + "13-TEST\n");
+                Console.WriteLine(" Is it A kind of text\n" + " 1-50 Puzzle\n" + " 2-99 Puzzle - 1\n" + " 3-99 Puzzle - 2\n" + " 4-9999 Puzzle\n" + " 5-15 Puzzle 1\n" + " 6-15 Puzzle 3\n" + " 7-15 Puzzle 4\n" + " 8-15 Puzzle 5\n" + " 9-15 Puzzle 1 - Unsolvable\n" + " 10-99 Puzzle - Unsolvable Case 1\n" + " 11-99 Puzzle - Unsolvable Case 2\n" + " 12-9999 Puzzle  - Unsolvable case\n" + " 13-TEST\n");
                 string txt = Console.ReadLine();
                 if (txt == "1") return d = new FileStream("Testcases/Complete/Solvable puzzles/Manhattan & Hamming/50 Puzzle.txt", FileMode.Open, FileAccess.Read);
                 else if (txt == "2") return d = new FileStream("Testcases/Complete/Solvable puzzles/Manhattan & Hamming/99 Puzzle - 1.txt", FileMode.Open, FileAccess.Read);
@@ -119,7 +119,7 @@ namespace N_Puzzel_Project
                 }
                 n++;
             }
-            Console.WriteLine("Is it A kind of model\n" + "[1]Hamming\n" + "[2]Manhattan\n" + "Enter your choice 1 or 2: ");
+            Console.WriteLine("Is it A kind of model\n" + "[1]Hamming\n" + "[2]Manhattan\n" + "[3]Hamming &Manhattan\n"+ "Enter your choice 1 or 2: ");
             string choose = Console.ReadLine();
             int x, y = 0;
             x = Environment.TickCount;
@@ -147,10 +147,30 @@ namespace N_Puzzel_Project
                     A.Display_path();
                 }
             }
+            else if (choose == "3")
+            {
+                if (isSolvable(cases, arr2))
+                {
+                    Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
+                    Hamming A = new Hamming();
+                    Console.WriteLine("------HAMMING------");
+                    A.A_Star_Algorithm_wiht_hamming(start);
+                    A.Display_();
+                    Console.WriteLine();
+                    Console.WriteLine("------MANHATTAN------");
+                    Manhattan M = new Manhattan();
+                    M.A__Algorithm(start);
+                    M.Display_path();
+                    Console.WriteLine();
+                }
+            }
             else
                 Console.WriteLine(" No Feasible Solution For The Given Board ");
             y = Environment.TickCount;
-            Console.WriteLine("Time Taken In MS : " + (y - x));
+            Console.WriteLine();
+            Console.WriteLine("Time Taken In S : " + ((y - x)/1000));
+            Console.WriteLine();
+            Console.Write("----------------------------------------");
         }
     }
 }
