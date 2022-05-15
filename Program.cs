@@ -15,12 +15,9 @@ namespace N_Puzzel_Project
         static FileStream choosefile()
         {
             FileStream d;
-            bool here = false;
             Console.WriteLine("Is it A kind of model\n" + "a-simple\n" + "b-complete\n" + "Enter your choice A or B: ");
-        HERE:
-
+            HERE:
             string choice = Console.ReadLine();
-        go:
             if (choice == "a" || choice == "A")
             {
                 Console.WriteLine("Is it A kind of text\n" + "1-8 Puzzle (1)\n" + "2-8 Puzzle - Case 1\n" + "3-8 Puzzle (2)\n" + "4-8 Puzzle (3)\n" + "5-8 Puzzle(2) - Case 1\n" + "6-8 Puzzle(3) - Case 1\n" + "7-15 Puzzle - 1\n" + "8-24 Puzzle 1\n" + "9-15 Puzzle - Case 2\n" + "10-15 Puzzle - Case 3\n" + "11-24 Puzzle 2\n");
@@ -57,7 +54,6 @@ namespace N_Puzzel_Project
                 else if (txt == "13") return d = new FileStream("Testcases/Complete/V. Large test case/TEST.txt", FileMode.Open, FileAccess.Read);
                 else Console.WriteLine("invalid source\n" + "press a or b to choose again\n");
             }
-            here = true;
             goto HERE;
         }
         static int getnumberofversion(int N, int[] arr2)
@@ -139,7 +135,6 @@ namespace N_Puzzel_Project
                         A.A_Star_Algorithm_wiht_hamming(start);
                         A.Display_();
                     }
-
                 }
             }
             else if (choose == "2")
