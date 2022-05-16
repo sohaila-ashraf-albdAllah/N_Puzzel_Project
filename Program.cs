@@ -12,14 +12,25 @@ namespace N_Puzzel_Project
         static string choice;
         public static int x, y = 0;
         static FileStream choosefile()
-        {
-            FileStream d;
-            Console.WriteLine("Is it A kind of model\n" + "a-simple\n" + "b-complete\n" + "Enter your choice A or B: ");
+        {           
+        FileStream d;
+            Console.WriteLine("________________________________________");
+            Console.WriteLine("|\tIs it A kind of model\t\t|\n"
+                + "|\t[a]Simple \t\t\t|\n" + "|\t[b]Complete \t\t\t|\n" + "|\t(Enter your choice A or B )\t|");
+            Console.WriteLine("________________________________________");
             HERE:
+            Console.Write("====>");
             string choice = Console.ReadLine();
             if (choice == "a" || choice == "A")
             {
-                Console.WriteLine("Is it A kind of text\n" + "1-8 Puzzle (1)\n" + "2-8 Puzzle - Case 1\n" + "3-8 Puzzle (2)\n" + "4-8 Puzzle (3)\n" + "5-8 Puzzle(2) - Case 1\n" + "6-8 Puzzle(3) - Case 1\n" + "7-15 Puzzle - 1\n" + "8-24 Puzzle 1\n" + "9-15 Puzzle - Case 2\n" + "10-15 Puzzle - Case 3\n" + "11-24 Puzzle 2\n");
+                Console.WriteLine("________________________________________");
+                Console.WriteLine("|\tIs it A kind of text\t\t|\n" 
+                    + "|\t1-8 Puzzle (1)\t\t\t|\n" + "|\t2-8 Puzzle - Case 1\t\t|\n" + "|\t3-8 Puzzle (2)\t\t\t|\n"
+                    + "|\t4-8 Puzzle (3)\t\t\t|\n" + "|\t5-8 Puzzle(2) - Case 1\t\t|\n" + "|\t6-8 Puzzle(3) - Case 1\t\t|\n"
+                    + "|\t7-15 Puzzle - 1\t\t\t|\n" + "|\t8-24 Puzzle 1\t\t\t|\n" + "|\t9-15 Puzzle - Case 2\t\t|\n" + "|\t10-15 Puzzle - Case 3\t\t|\n"
+                    + "|\t11-24 Puzzle 2\t\t\t|");
+                Console.WriteLine("________________________________________");
+                Console.Write("====>");
                 string txt = Console.ReadLine();
                 if (txt == "1") return d = new FileStream("Testcases/Sample/Solvable Puzzles/8 Puzzle (1).txt", FileMode.Open, FileAccess.Read);
                 else if (txt == "2") return d = new FileStream("Testcases/Sample/Unsolvable Puzzles/8 Puzzle - Case 1.txt", FileMode.Open, FileAccess.Read);
@@ -36,7 +47,14 @@ namespace N_Puzzel_Project
             }
             else if (choice == "b" || choice == "B")
             {
-                Console.WriteLine(" Is it A kind of text\n" + " 1-50 Puzzle\n" + " 2-99 Puzzle - 1\n" + " 3-99 Puzzle - 2\n" + " 4-9999 Puzzle\n" + " 5-15 Puzzle 1\n" + " 6-15 Puzzle 3\n" + " 7-15 Puzzle 4\n" + " 8-15 Puzzle 5\n" + " 9-15 Puzzle 1 - Unsolvable\n" + " 10-99 Puzzle - Unsolvable Case 1\n" + " 11-99 Puzzle - Unsolvable Case 2\n" + " 12-9999 Puzzle  - Unsolvable case\n" + " 13-TEST\n");
+                Console.WriteLine("________________________________________");
+                Console.WriteLine("|\tIs it A kind of text\t\t|\n" + "|\t1-50 Puzzle\t\t\t|\n" + "|\t2-99 Puzzle - 1\t\t\t|\n"
+                    + "|\t3-99 Puzzle - 2\t\t\t|\n" + "|\t4-9999 Puzzle\t\t\t|\n" + "|\t5-15 Puzzle 1\t\t\t|\n" + "|\t6-15 Puzzle 3\t\t\t|\n"
+                    + "|\t7-15 Puzzle 4\t\t\t|\n" + "|\t8-15 Puzzle 5\t\t\t|\n" + "|\t9-15 Puzzle 1 - Unsolvable\t|\n"
+                    + "|\t10-99 Puzzle - Unsolvable Case 1|\n" + "|\t11-99 Puzzle - Unsolvable Case 2|\n"
+                    + "|\t12-9999 Puzzle - Unsolvable case|\n" + "|\t13-TEST\t\t\t\t|");
+                Console.WriteLine("________________________________________");
+                Console.Write("====>");
                 string txt = Console.ReadLine();
                 if (txt == "1") return d = new FileStream("Testcases/Complete/Solvable puzzles/Manhattan & Hamming/50 Puzzle.txt", FileMode.Open, FileAccess.Read);
                 else if (txt == "2") return d = new FileStream("Testcases/Complete/Solvable puzzles/Manhattan & Hamming/99 Puzzle - 1.txt", FileMode.Open, FileAccess.Read);
@@ -119,7 +137,12 @@ namespace N_Puzzel_Project
                 }
                 n++;
             }
-            Console.WriteLine("Is it A kind of model\n" + "[1]Hamming\n" + "[2]Manhattan\n" + "[3]Manhattan & Hamming\n" + "Enter your choice 1 , 2 OR 3 : ");
+            Console.WriteLine("________________________________________");
+            Console.WriteLine("|\tIs it A kind of model\t\t|\n" + "|\t[1]Hamming\t\t\t|\n"
+                + "|\t[2]Manhattan\t\t\t|\n" + "|\t[3]Hamming &Manhattan\t\t|\n"
+                + "|\t(Enter your choice 1 or 2)\t|");
+            Console.WriteLine("________________________________________");
+            Console.Write("====>");
             string choose = Console.ReadLine();
             int x, y = 0;
             x = Environment.TickCount;
@@ -132,7 +155,7 @@ namespace N_Puzzel_Project
                         Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                         Hamming A = new Hamming();
                         A.A_Star_Algorithm_wiht_hamming(start);
-                        A.Display_();
+                       // A.Display_();
                     }
                 }
             }
@@ -144,7 +167,7 @@ namespace N_Puzzel_Project
                     Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                     Manhattan A = new Manhattan();
                     A.A__Algorithm(start);
-                    A.Display_path();
+                   // A.Display_path();
                 }
             }
             else if (choose == "3")
@@ -152,15 +175,15 @@ namespace N_Puzzel_Project
                 if (isSolvable(cases, arr2))
                 {
                     Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
-                    Hamming A = new Hamming();
-                    Console.WriteLine("------HAMMING------");
-                    A.A_Star_Algorithm_wiht_hamming(start);
-                    A.Display_();
-                    Console.WriteLine();
                     Console.WriteLine("------MANHATTAN------");
                     Manhattan M = new Manhattan();
                     M.A__Algorithm(start);
-                    M.Display_path();
+                   // M.Display_path();
+                    Console.WriteLine();
+                    Hamming A = new Hamming();
+                    Console.WriteLine("------HAMMING------");
+                    A.A_Star_Algorithm_wiht_hamming(start);
+                   // A.Display_();
                     Console.WriteLine();
                 }
             }
