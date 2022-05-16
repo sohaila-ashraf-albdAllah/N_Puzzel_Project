@@ -6,12 +6,43 @@ namespace N_Puzzel_Project
 {
     class Manhattan
     {
+        static int Exit = 0;
         public Dictionary<string, Puzzel> Open_child = new Dictionary<string, Puzzel>();
         public Dictionary<string, Puzzel> closed_child = new Dictionary<string, Puzzel>();
         public Priority_Queue PQ_list = new Priority_Queue();
         public List<Puzzel> Path_Of_Res = new List<Puzzel>();
-        static int Exit = 0;
 
+        //***********************************************************************************
+        public void Display_path()
+        {
+            if (Exit == 0)
+            {
+                int num = Path_Of_Res.Count;
+                for (int i = num - 1; i >= 0; i--)
+                {
+                    Path_Of_Res[i].Display();
+                }
+                Console.WriteLine("______________________________________");
+                Console.WriteLine("--> ( Number of Movements = " + (num - 1) + " )");
+                Console.WriteLine("______________________________________");
+            }
+            Exit = 1;
+        }
+
+        //***********************************************************************************
+        public void get_Entire_Path(Puzzel Final)
+        {
+            Puzzel path = Final.parent;
+            while (path.parent != null)
+            {
+                Path_Of_Res.Add(path);
+                path = path.parent;
+            }
+            Path_Of_Res.Add(path);
+            Display_path();
+        }
+
+        //***********************************************************************************
         public int Closed_child(Puzzel N)
         {
             if (closed_child.ContainsKey(N.key) == true)
@@ -27,6 +58,8 @@ namespace N_Puzzel_Project
             }
             return 1;
         }
+
+        //***********************************************************************************
         public int Child_Open(Puzzel N)
         {
             if (Open_child.ContainsKey(N.key) == true)
@@ -35,14 +68,16 @@ namespace N_Puzzel_Project
             }
             return 1;
         }
+
+        //***********************************************************************************
         public void Create_New_Child(Puzzel N)
         {
-            if (N.check_up_value() == true)
+            if (N.check_Movement_value(1, 0, 0, 0) == true)
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.UP_movement();
                 New_puzzel.manhattan();
-                New_puzzel.Calculate_min_cost_Manhattan();
+                New_puzzel.Calculate_cost_Manhattan();
                 if (New_puzzel.IS_reache_to_goal_manhattan() == true)
                 {
                     New_puzzel.direction_of_moves = "Goal";
@@ -57,12 +92,12 @@ namespace N_Puzzel_Project
                     Open_child.Add(New_puzzel.key, New_puzzel);
                 }
             }
-            if (N.check_down_value() == true)
+            if (N.check_Movement_value(0, 1, 0, 0) == true)
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.Down_movement();
                 New_puzzel.manhattan();
-                New_puzzel.Calculate_min_cost_Manhattan();
+                New_puzzel.Calculate_cost_Manhattan();
                 if (New_puzzel.IS_reache_to_goal_manhattan() == true)
                 {
                     New_puzzel.direction_of_moves = "Goal";
@@ -77,12 +112,12 @@ namespace N_Puzzel_Project
                     Open_child.Add(New_puzzel.key, New_puzzel);
                 }
             }
-            if (N.check_right_value() == true)
+            if (N.check_Movement_value(0, 0, 0, 1) == true)
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.Right_movement();
                 New_puzzel.manhattan();
-                New_puzzel.Calculate_min_cost_Manhattan();
+                New_puzzel.Calculate_cost_Manhattan();
                 if (New_puzzel.IS_reache_to_goal_manhattan() == true)
                 {
                     New_puzzel.direction_of_moves = "Goal";
@@ -97,12 +132,12 @@ namespace N_Puzzel_Project
                     Open_child.Add(New_puzzel.key, New_puzzel);
                 }
             }
-            if (N.check_left_value() == true)
+            if (N.check_Movement_value(0, 0, 1, 0) == true)
             {
                 Puzzel New_puzzel = new Puzzel(N);
                 New_puzzel.Left_movement();
                 New_puzzel.manhattan();
-                New_puzzel.Calculate_min_cost_Manhattan();
+                New_puzzel.Calculate_cost_Manhattan();
                 if (New_puzzel.IS_reache_to_goal_manhattan() == true)
                 {
                     New_puzzel.direction_of_moves = "Goal";
@@ -118,6 +153,8 @@ namespace N_Puzzel_Project
                 }
             }
         }
+
+        //***********************************************************************************
         public void A__Algorithm(Puzzel First)
         {
             Open_child.Add(First.key, First);
@@ -131,35 +168,6 @@ namespace N_Puzzel_Project
                     Create_New_Child(New);
                 }
             }
-        }
-        public void get_Entire_Path(Puzzel Final)
-        {
-            Puzzel path = Final.parent;
-            while (path.parent != null)
-            {
-                Path_Of_Res.Add(path);
-                path = path.parent;
-            }
-            Path_Of_Res.Add(path);
-            Display_path();
-        }
-        public void Display_path()
-        {
-            if(Exit==0)
-            {
-                int Num_Of_Paths = Path_Of_Res.Count;
-                int Num_Of_Movements = Num_Of_Paths - 1;
-                for (int i = Num_Of_Paths - 1; i >= 0; i--)
-                {
-                    Path_Of_Res[i].Display();
-                }
-                Console.Write("----------------------------------------");
-                Console.WriteLine();
-                Console.Write(" Number Of Movements = " + Num_Of_Movements);
-                Console.WriteLine();
-                Console.Write("----------------------------------------");
-            }      
-            Exit = 1;
-        }
+        }       
     }
 }

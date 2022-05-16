@@ -4,14 +4,15 @@ using System.Text;
 
 namespace N_Puzzel_Project
 {        
-
     class Hamming
     {
+        static int Exit = 0;
         public Dictionary<string, Puzzel> Open_child = new Dictionary<string, Puzzel>();
         public Dictionary<string, Puzzel> closed_child = new Dictionary<string, Puzzel>();
         public Priority_Queue PQ_list = new Priority_Queue();
         public List<Puzzel> Path_Of_Res = new List<Puzzel>();
-        static int Exit = 0;
+
+        //***********************************************************************************
         public void Get_final_Path(Puzzel final)
         {
             Puzzel prnt = final.parent;
@@ -23,6 +24,8 @@ namespace N_Puzzel_Project
             Path_Of_Res.Add(prnt);
             Display_();
         }
+
+        //***********************************************************************************
         public void Display_()
         {
             if (Exit == 0) 
@@ -32,15 +35,15 @@ namespace N_Puzzel_Project
                 {
                     Path_Of_Res[i].Display();
                 }
-                Console.Write("----------------------------------------");
-                Console.WriteLine();
-                Console.Write("Number of Movements = " + (num - 1));
-                Console.WriteLine();
-                Console.Write("----------------------------------------");
+                Console.WriteLine("______________________________________");
+                Console.WriteLine("--> ( Number of Movements = " + (num - 1)  +" )");
+                Console.WriteLine("______________________________________");
             }
             Exit = 1;
         }
-        public Boolean Child_Open(Puzzel child)
+
+        //***********************************************************************************
+        public bool Child_Open(Puzzel child)
         {
             if (Open_child.ContainsKey(child.key) == true)
             {
@@ -48,19 +51,18 @@ namespace N_Puzzel_Project
             }
             else
                 return false;
-
         }
 
+        //***********************************************************************************
         public void Create_New_Child(Puzzel p)
         {
-           
-            if (p.check_up_value() == true)
+            if (p.check_Movement_value(1,0,0,0)==true)
             {
                 Puzzel child = new Puzzel(p);
                 bool check;
                 child.UP_movement();
                 child.Hamming();
-                child.Calculate_min_cost_of_hamming();
+                child.Calculate_cost_of_hamming();
 
                 if (child.IS_reache_to_goal_hamming() == true)
                 {
@@ -78,13 +80,13 @@ namespace N_Puzzel_Project
                 }
             }
 
-            if (p.check_down_value() == true)
+            if (p.check_Movement_value(0, 1, 0, 0) == true)
             {
                 Puzzel child = new Puzzel(p);
                 bool check;
                 child.Down_movement();
                 child.Hamming();
-                child.Calculate_min_cost_of_hamming();
+                child.Calculate_cost_of_hamming();
                 
                 if (child.IS_reache_to_goal_hamming() == true)
                 {
@@ -102,13 +104,13 @@ namespace N_Puzzel_Project
                 }
             }
 
-            if (p.check_left_value() == true)
+            if (p.check_Movement_value(0, 0, 1, 0) == true)
             {
                 Puzzel child = new Puzzel(p);
                 bool check;
                 child.Left_movement();
                 child.Hamming();
-                child.Calculate_min_cost_of_hamming();
+                child.Calculate_cost_of_hamming();
                
                 if (child.IS_reache_to_goal_hamming() == true)
                 {
@@ -126,13 +128,13 @@ namespace N_Puzzel_Project
                 }
             }
 
-            if (p.check_right_value() == true)
+            if (p.check_Movement_value(0, 0, 0, 1) == true)
             {
                 Puzzel child = new Puzzel(p);
                 bool check;
                 child.Right_movement();
                 child.Hamming();
-                child.Calculate_min_cost_of_hamming();
+                child.Calculate_cost_of_hamming();
                 if (child.IS_reache_to_goal_hamming() == true)
                 {
                     child.direction_of_moves = "Goal";
@@ -151,6 +153,7 @@ namespace N_Puzzel_Project
 
         }
 
+        //***********************************************************************************
         public int Closed_child(Puzzel N)
         {
             if (closed_child.ContainsKey(N.key) == true)
@@ -167,6 +170,7 @@ namespace N_Puzzel_Project
             return 1;
         }
 
+        //***********************************************************************************
         public void A_Star_Algorithm_wiht_hamming(Puzzel First)
         {
             Open_child.Add(First.key, First);
