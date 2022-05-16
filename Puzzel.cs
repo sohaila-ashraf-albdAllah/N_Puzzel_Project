@@ -268,25 +268,40 @@ namespace N_Puzzel_Project
 
         public void Display()
         {
-             Console.WriteLine(puzzel_2D_array.Cast<int>());
-
-            Console.WriteLine();
-            /* for (int i = 0; i < puzzel_size; i++)
-             {
-                 for (int j = 0; j < puzzel_size; j++)
-                 {
-                     Console.Write(puzzel_2D_array[i, j] + " ");
-                 }
-                 if (i == 0) //message of direction will appear in when i = 0
-                 {
-                     Console.WriteLine("--> ( " + direction_of_moves + " )"); 
-                 }
-                 else
-                 { 
-                     Console.WriteLine();
-                 }
-             }
-             Console.WriteLine("________________");*/
+            int i = 0, j = 0, cn = 0;
+            while (true)
+            {
+                if (cn == i && cn % puzzel_size == 0)
+                {
+                    Console.WriteLine(" ------- > " + direction_of_moves);
+                    cn++;
+                }
+                if (i != puzzel_size - 1 && j != puzzel_size - 1)
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.Write(" ");
+                    j++;
+                }
+                else if (i != puzzel_size - 1 && j == puzzel_size - 1)
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.WriteLine();
+                    j = 0;
+                    i++;
+                }
+                else if (i == puzzel_size - 1 && j != puzzel_size - 1)
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.Write(" ");
+                    j++;
+                }
+                else
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.WriteLine("\n");
+                    break;
+                }
+            }
         }
 
     }

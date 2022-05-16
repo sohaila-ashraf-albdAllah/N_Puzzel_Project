@@ -155,7 +155,7 @@ namespace N_Puzzel_Project
                         Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                         Hamming A = new Hamming();
                         A.A_Star_Algorithm_wiht_hamming(start);
-                        A.Display_();
+                       // A.Display_();
                     }
                 }
             }
@@ -167,7 +167,7 @@ namespace N_Puzzel_Project
                     Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                     Manhattan A = new Manhattan();
                     A.A__Algorithm(start);
-                    A.Display_path();
+                   // A.Display_path();
                 }
             }
             else if (choose == "3")
@@ -178,12 +178,12 @@ namespace N_Puzzel_Project
                     Console.WriteLine("------MANHATTAN------");
                     Manhattan M = new Manhattan();
                     M.A__Algorithm(start);
-                    M.Display_path();
+                   // M.Display_path();
                     Console.WriteLine();
                     Hamming A = new Hamming();
                     Console.WriteLine("------HAMMING------");
                     A.A_Star_Algorithm_wiht_hamming(start);
-                    A.Display_();
+                   // A.Display_();
                     Console.WriteLine();
                 }
             }
