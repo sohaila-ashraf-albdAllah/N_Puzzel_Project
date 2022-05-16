@@ -7,10 +7,10 @@ namespace N_Puzzel_Project
 {
     struct Movements
     {
-        public bool left;
-        public bool right;
         public bool up;
         public bool down;
+        public bool left;
+        public bool right;
     }
 
     class Puzzel
