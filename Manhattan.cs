@@ -145,7 +145,7 @@ namespace N_Puzzel_Project
         }
         public void Display_path()
         {
-            if(Exit==0)
+            if(Exit == 0)
             {
                 int Num_Of_Paths = Path_Of_Res.Count;
                 int Num_Of_Movements = Num_Of_Paths - 1;
@@ -153,6 +153,38 @@ namespace N_Puzzel_Project
                 {
                     Path_Of_Res[i].Display();
                 }
+                /* int i = 0, j = 0, cn = 0 , Num_Of_Paths = Path_Of_Res.Count ,;
+                 if (cn == i && cn % puzzel_size == 0)
+                {
+                    Console.WriteLine(" ------- > " + direction_of_moves);
+                    cn++;
+                }
+                if (i != puzzel_size - 1 && j != puzzel_size - 1)
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.Write(" ");
+                    j++;
+                }
+                else if (i != puzzel_size - 1 && j == puzzel_size - 1)
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.WriteLine();
+                    j = 0;
+                    i++;
+                }
+                else if (i == puzzel_size - 1 && j != puzzel_size - 1)
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.Write(" ");
+                    j++;
+                }
+                else
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.WriteLine("\n");
+                    break;
+                }
+            */
                 Console.Write("----------------------------------------");
                 Console.WriteLine();
                 Console.Write(" Number Of Movements = " + Num_Of_Movements);
