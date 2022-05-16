@@ -41,7 +41,6 @@ namespace N_Puzzel_Project
             Path_Of_Res.Add(path);
             Display_path();
         }
-
         //***********************************************************************************
         public int Closed_child(Puzzel N)
         {
