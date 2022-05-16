@@ -55,23 +55,23 @@ namespace N_Puzzel_Project
             manhattan_value = p.manhattan_value;
         }
 
-            //copy constructor 
-            public Puzzel(Puzzel p)
-         {
-            puzzel_size = p.puzzel_size;
-            puzzel_2D_array = new int[puzzel_size, puzzel_size];
-            for (int i = 0; i < puzzel_size; i++)
+        //copy constructor 
+        public Puzzel(Puzzel p)
+        {
+        puzzel_size = p.puzzel_size;
+        puzzel_2D_array = new int[puzzel_size, puzzel_size];
+        for (int i = 0; i < puzzel_size; i++)
+        {
+            for (int j = 0; j < puzzel_size; j++)
             {
-                for (int j = 0; j < puzzel_size; j++)
-                {
-                    puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j];
-                }
+                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j];
             }
-            blank_space_i = p.blank_space_i;
-            blank_space_j = p.blank_space_j;
-            number_of_level = p.number_of_level + 1;
-            parent = p.parent;
-         }
+        }
+        blank_space_i = p.blank_space_i;
+        blank_space_j = p.blank_space_j;
+        number_of_level = p.number_of_level + 1;
+        parent = p.parent;
+        }
         public void Hamming()
         {
             /* ex
@@ -167,7 +167,7 @@ namespace N_Puzzel_Project
             blank_space_i = blank_space_i - 1;
             return puzzel_2D_array[blank_space_i, blank_space_j];
         }
-      public Boolean check_up_value ()
+        public Boolean check_up_value ()
         {
             if (blank_space_i != 0)
             {
@@ -178,7 +178,6 @@ namespace N_Puzzel_Project
                 return false;
             }
         }
-
         public int Down_movement()
         {
             int swap_part = puzzel_2D_array[blank_space_i + 1, blank_space_j];
@@ -242,29 +241,45 @@ namespace N_Puzzel_Project
             {
                 return false;
             }
-        }       
+        }
         /*********************************************End of movement********************************************/
-       
         public void Display()
         {
-            for (int i = 0; i < puzzel_size; i++)
+            int i = 0, j = 0, cn = 0;
+            while (true)
             {
-                for (int j = 0; j < puzzel_size; j++)
+                if (cn == i && cn % puzzel_size == 0)
+                {
+                    Console.WriteLine(" ------- > " + direction_of_moves);
+                    cn++;
+                }
+                if (i != puzzel_size - 1 && j != puzzel_size - 1)
                 {
                     Console.Write(puzzel_2D_array[i, j]);
                     Console.Write(" ");
+                    j++;
                 }
-                if (i == 1) //message of direction will appear in when i = 0
+                else if (i != puzzel_size - 1 && j == puzzel_size - 1)
                 {
-                    Console.WriteLine(" ----> " + direction_of_moves); 
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.WriteLine();
+                    j = 0;
+                    i++;
+                }
+                else if (i == puzzel_size - 1 && j != puzzel_size - 1)
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.Write(" ");
+                    j++;
                 }
                 else
-                { 
-                    Console.WriteLine();
+                {
+                    Console.Write(puzzel_2D_array[i, j]);
+                    Console.WriteLine("\n");
+                    break;
                 }
             }
-            Console.WriteLine();
-        }
-    }
+        }
+    }
 }
 

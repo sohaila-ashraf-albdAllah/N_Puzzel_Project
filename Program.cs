@@ -168,7 +168,7 @@ namespace N_Puzzel_Project
                 Console.WriteLine(" No Feasible Solution For The Given Board ");
             y = Environment.TickCount;
             Console.WriteLine();
-            Console.WriteLine("Time Taken In S : " + ((y - x)/1000));
+            Console.WriteLine("Time Taken In S : " + ((y - x )/1000));
             Console.WriteLine();
             Console.Write("----------------------------------------");
         }

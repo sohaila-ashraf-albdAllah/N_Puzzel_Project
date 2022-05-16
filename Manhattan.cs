@@ -26,7 +26,7 @@ namespace N_Puzzel_Project
                 return 0;
             }
             return 1;
-        }
+        }//n
         public int Child_Open(Puzzel N)
         {
             if (Open_child.ContainsKey(N.key) == true)
@@ -34,7 +34,7 @@ namespace N_Puzzel_Project
                 return 0;
             }
             return 1;
-        }
+        }//n
         public void Create_New_Child(Puzzel N)
         {
             if (N.check_up_value() == true)

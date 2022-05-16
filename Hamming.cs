@@ -50,7 +50,6 @@ namespace N_Puzzel_Project
                 return false;
 
         }
-
         public void Create_New_Child(Puzzel p)
         {
            
