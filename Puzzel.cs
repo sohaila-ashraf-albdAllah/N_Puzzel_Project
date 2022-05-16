@@ -81,40 +81,113 @@ namespace N_Puzzel_Project
              */
             int miss_position = 0; // number of blocks out of place
             int correct_position = 1; // position correct number allocation
-            for (int i = 0; i < puzzel_size; i++)
+            int i = 0, j = 0;
+            while (i < puzzel_size)
             {
-                for (int j = 0; j < puzzel_size; j++)
+                if (i != puzzel_size - 1 && j != puzzel_size - 1)
                 {
                     key += this.puzzel_2D_array[i, j];
                     if (puzzel_2D_array[i, j] != correct_position && puzzel_2D_array[i, j] != 0) //blank space
                     {
                         miss_position++;
-                    } 
+                    }
                     correct_position++;
+                    j++;
+                }
+                else if (i != puzzel_size - 1 && j == puzzel_size - 1)
+                {
+                    key += this.puzzel_2D_array[i, j];
+                    if (puzzel_2D_array[i, j] != correct_position && puzzel_2D_array[i, j] != 0) //blank space
+                    {
+                        miss_position++;
+                    }
+                    correct_position++;
+                    j = 0;
+                    i++;
+                }
+                else if (i == puzzel_size - 1 && j != puzzel_size - 1)
+                {
+                    key += this.puzzel_2D_array[i, j];
+                    if (puzzel_2D_array[i, j] != correct_position && puzzel_2D_array[i, j] != 0) //blank space
+                    {
+                        miss_position++;
+                    }
+                    correct_position++;
+                    j++;
+                }
+                else
+                {
+                    key += this.puzzel_2D_array[i, j];
+                    if (puzzel_2D_array[i, j] != correct_position && puzzel_2D_array[i, j] != 0) //blank space
+                    {
+                        miss_position++;
+                    }
+                    correct_position++;
+                    hamming_value = miss_position;
+                    break;
                 }
             }
-            hamming_value = miss_position;
         }
         public void manhattan()
         {
-            int cnt = 0;
-            int RES = 0;
-            for (int row = 0; row < puzzel_size; row++)
+            int i = 0, j = 0, cnt = 0, RES = 0;
+            while (i < puzzel_size)
             {
-                for (int col = 0; col < puzzel_size; col++)
+                if (i != puzzel_size - 1 && j != puzzel_size - 1)
                 {
-                    this.key += this.puzzel_2D_array[row, col];
-                    int val = this.puzzel_2D_array[row, col];
+                    this.key += this.puzzel_2D_array[i, j];
+                    int val = this.puzzel_2D_array[i, j];
                     RES++;
                     if (val != 0 && val != RES)
                     {
                         int temp1 = ((val - 1) / puzzel_size);
                         int temp2 = ((val - 1) % puzzel_size);
-                        cnt += Math.Abs(row - temp1) + Math.Abs(col - temp2);
+                        cnt += Math.Abs(i - temp1) + Math.Abs(j - temp2);
                     }
+                    j++;
+                }
+                else if (i != puzzel_size - 1 && j == puzzel_size - 1)
+                {
+                    this.key += this.puzzel_2D_array[i, j];
+                    int val = this.puzzel_2D_array[i, j];
+                    RES++;
+                    if (val != 0 && val != RES)
+                    {
+                        int temp1 = ((val - 1) / puzzel_size);
+                        int temp2 = ((val - 1) % puzzel_size);
+                        cnt += Math.Abs(i - temp1) + Math.Abs(j - temp2);
+                    }
+                    j = 0;
+                    i++;
+                }
+                else if (i == puzzel_size - 1 && j != puzzel_size - 1)
+                {
+                    this.key += this.puzzel_2D_array[i, j];
+                    int val = this.puzzel_2D_array[i, j];
+                    RES++;
+                    if (val != 0 && val != RES)
+                    {
+                        int temp1 = ((val - 1) / puzzel_size);
+                        int temp2 = ((val - 1) % puzzel_size);
+                        cnt += Math.Abs(i - temp1) + Math.Abs(j - temp2);
+                    }
+                    j++;
+                }
+                else
+                {
+                    this.key += this.puzzel_2D_array[i, j];
+                    int val = this.puzzel_2D_array[i, j];
+                    RES++;
+                    if (val != 0 && val != RES)
+                    {
+                        int temp1 = ((val - 1) / puzzel_size);
+                        int temp2 = ((val - 1) % puzzel_size);
+                        cnt += Math.Abs(i - temp1) + Math.Abs(j - temp2);
+                    }
+                    manhattan_value = cnt;
+                    break;
                 }
             }
-            manhattan_value = cnt;
         }
         public void Calculate_min_cost_of_hamming()
         { 
@@ -246,7 +319,7 @@ namespace N_Puzzel_Project
         public void Display()
         {
             int i = 0, j = 0, cn = 0;
-            while (true)
+            while (i < puzzel_size)
             {
                 if (cn == i && cn % puzzel_size == 0)
                 {
