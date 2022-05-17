@@ -16,27 +16,31 @@ namespace N_Puzzel_Project
         public void Get_final_Path(Puzzel final)
         {
             Puzzel prnt = final.parent;
+            int size = final.puzzel_size;
             while (prnt.parent != null)
             {
                 Path_Of_Res.Add(prnt);
                 prnt = prnt.parent;
             }
             Path_Of_Res.Add(prnt);
-            Display_();
+            Display_(size);
         }
 
         //***********************************************************************************
-        public void Display_()
+        public void Display_(int size)
         {
-            if (Exit == 0) 
+            if (Exit == 0)
             {
                 int num = Path_Of_Res.Count;
-                for (int i = num - 1; i >= 0; i--)
+                if (size == 3)
                 {
-                    Path_Of_Res[i].Display();
+                    for (int i = num - 1; i >= 0; i--)
+                    {
+                        Path_Of_Res[i].Display();
+                    }
                 }
                 Console.WriteLine("______________________________________");
-                Console.WriteLine("--> ( Number of Movements = " + (num - 1)  +" )");
+                Console.WriteLine("--> ( Number of Movements = " + (num - 1) + " )");
                 Console.WriteLine("______________________________________");
             }
             Exit = 1;
@@ -150,7 +154,6 @@ namespace N_Puzzel_Project
                     Open_child.Add(child.key, child);
                 }
             }
-
         }
 
         //***********************************************************************************
@@ -175,7 +178,7 @@ namespace N_Puzzel_Project
         {
             Open_child.Add(First.key, First);
             PQ_list.Enqueue(First);
-            while (PQ_list.PUZZLE.Count != 0)
+            while (Exit == 0)
             {
                 Puzzel New = new Puzzel(PQ_list.Dequeue(),0);
                 if (Closed_child(New) == 1)
