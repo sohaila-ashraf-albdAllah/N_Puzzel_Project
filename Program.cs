@@ -144,8 +144,10 @@ namespace N_Puzzel_Project
             Console.WriteLine("________________________________________");
             Console.Write("====>");
             string choose = Console.ReadLine();
-            int x, y = 0;
-            x = Environment.TickCount;
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            // int x, y = 0;
+            // x = Environment.TickCount;
             if (choose == "1")
             {
                 {
@@ -189,11 +191,15 @@ namespace N_Puzzel_Project
             }
             else
                 Console.WriteLine(" No Feasible Solution For The Given Board ");
-            y = Environment.TickCount;
+            //y = Environment.TickCount;
+            var x = timer.Elapsed; 
             Console.WriteLine();
-            Console.WriteLine("Time Taken In S : " + ((y - x )/1000));
+            Console.WriteLine("Time Taken : " + x);
             Console.WriteLine();
             Console.Write("----------------------------------------");
+            timer.Stop();
+
         }
     }
 }
+ 

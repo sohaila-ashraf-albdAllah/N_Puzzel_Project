@@ -4,7 +4,7 @@ using System.Text;
 namespace N_Puzzel_Project
 {
     class Priority_Queue
-    {  
+    {
         public List<Puzzel> PUZZLE = new List<Puzzel>();
         public void Enqueue(Puzzel item)
         {
