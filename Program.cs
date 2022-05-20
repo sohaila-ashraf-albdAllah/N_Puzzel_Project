@@ -68,7 +68,7 @@ namespace N_Puzzel_Project
                 else if (txt == "10") return d = new FileStream("Testcases/Complete/Unsolvable puzzles/99 Puzzle - Unsolvable Case 1.txt", FileMode.Open, FileAccess.Read);
                 else if (txt == "11") return d = new FileStream("Testcases/Complete/Unsolvable puzzles/99 Puzzle - Unsolvable Case 2.txt", FileMode.Open, FileAccess.Read);
                 else if (txt == "12") return d = new FileStream("Testcases/Complete/Unsolvable puzzles/9999 Puzzle.txt", FileMode.Open, FileAccess.Read);
-                else if (txt == "13") return d = new FileStream("TEST.txt", FileMode.Open, FileAccess.Read);
+                else if (txt == "13") return d = new FileStream("Testcases/Complete/V. Large test case/TEST.txt", FileMode.Open, FileAccess.Read);
                 else Console.WriteLine("invalid source\n" + "press a or b to choose again\n");
             }
             goto HERE;
@@ -157,7 +157,6 @@ namespace N_Puzzel_Project
                         Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                         Hamming A = new Hamming();
                         A.A_Star_Algorithm_wiht_hamming(start);
-                        // A.Display_();
                         t.Stop();
                         var s = t.Elapsed;
                         Console.WriteLine();
@@ -175,11 +174,10 @@ namespace N_Puzzel_Project
                     Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                     Manhattan A = new Manhattan();
                     A.A__Algorithm(start);
-                    // A.Display_path();
+                    t.Stop();
                     var s = t.Elapsed;
                     Console.WriteLine();
                     Console.WriteLine("Time Taken In S : " + ((s)));
-                    t.Stop();
                 }
             }
             else if (choose == "3")
@@ -192,25 +190,21 @@ namespace N_Puzzel_Project
                     Console.WriteLine("------MANHATTAN------");
                     Manhattan M = new Manhattan();
                     M.A__Algorithm(start);
-                   // M.Display_path();
                     Console.WriteLine();
                     Hamming A = new Hamming();
                     Console.WriteLine("------HAMMING------");
                     A.A_Star_Algorithm_wiht_hamming(start);
-                    // A.Display_();
+                    t.Stop();
                     var s = t.Elapsed;
                     Console.WriteLine();
                     Console.WriteLine("Time Taken In S : " + ((s)));
-                    t.Stop();
                     Console.WriteLine();
                 }
             }
             else
                 Console.WriteLine(" No Feasible Solution For The Given Board ");
-            //y = Environment.TickCount;
             Console.WriteLine();
             Console.Write("----------------------------------------");
-            timer.Stop();
 
         }
     }

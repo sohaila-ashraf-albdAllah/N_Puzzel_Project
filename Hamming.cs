@@ -13,74 +13,74 @@ namespace N_Puzzel_Project
         public List<Puzzel> Path_Of_Res = new List<Puzzel>();
 
         //***********************************************************************************
-        public void Get_final_Path(Puzzel final)
+        public void Get_final_Path(Puzzel final) //Θ(N^2)
         {
-            Puzzel prnt = final.parent;
-            int size = final.puzzel_size;
-            while (prnt.parent != null)
+            Puzzel prnt = final.parent; //o(1)
+            int size = final.puzzel_size; //o(1)
+            while (prnt.parent != null) //o(n)
             {
-                Path_Of_Res.Add(prnt);
-                prnt = prnt.parent;
+                Path_Of_Res.Add(prnt); //o(1)
+                prnt = prnt.parent; //o(1)
             }
-            Path_Of_Res.Add(prnt);
-            Display_(size);
+            Path_Of_Res.Add(prnt); //o(1)
+            Display_(size); //Θ(N^2)
         }
 
         //***********************************************************************************
-        public void Display_(int size)
+        public void Display_(int size) //Θ(N^2)
         {
-            if (Exit == 0)
+            if (Exit == 0) //o(1)
             {
-                int num = Path_Of_Res.Count;
-                if (size == 3)
+                int num = Path_Of_Res.Count; //o(1)
+                if (size == 3) //o(1)
                 {
-                    for (int i = num - 1; i >= 0; i--)
+                    for (int i = num - 1; i >= 0; i--) //o(n) * o(n) ==> O(N^2)
                     {
-                        Path_Of_Res[i].Display();
+                        Path_Of_Res[i].Display();//o(n)
                     }
                 }
-                Console.WriteLine("______________________________________");
-                Console.WriteLine("--> ( Number of Movements = " + (num - 1) + " )");
-                Console.WriteLine("______________________________________");
+                Console.WriteLine("______________________________________"); //o(1)
+                Console.WriteLine("--> ( Number of Movements = " + (num - 1) + " )"); //o(1)
+                Console.WriteLine("______________________________________"); //o(1)
             }
-            Exit = 1;
+            Exit = 1; //o(1)
         }
 
         //***********************************************************************************
-        public bool Child_Open(Puzzel child)
+        public bool Child_Open(Puzzel child)//Θ(1)
         {
-            if (Open_child.ContainsKey(child.key) == true)
+            if (Open_child.ContainsKey(child.key) == true) //o(1)
             {
-                return true;
+                return true; //o(1)
             }
             else
-                return false;
+                return false; //o(1)
         }
 
         //***********************************************************************************
-        public void Create_New_Child(Puzzel p)
+        public void Create_New_Child(Puzzel p) //Θ(N^2)
         {
-            if (p.check_Movement_value(1,0,0,0)==true)
+            if (p.check_Movement_value(1,0,0,0)==true) //o(1)
             {
-                Puzzel child = new Puzzel(p);
-                bool check;
-                child.UP_movement();
-                child.Hamming();
-                child.Calculate_cost_of_hamming();
+                Puzzel child = new Puzzel(p); //o(1)
+                bool check; //o(1)
+                child.UP_movement(); //o(1)
+                child.Hamming(); //o(n)
+                child.Calculate_cost_of_hamming(); //o(1)
 
-                if (child.IS_reache_to_goal_hamming() == true)
+                if (child.IS_reache_to_goal_hamming() == true) //o(1)
                 {
-                    child.direction_of_moves = "Goal";
-                    Path_Of_Res.Add(child);
-                    Get_final_Path(child);
+                    child.direction_of_moves = "Goal"; //o(1)
+                    Path_Of_Res.Add(child); //o(1)
+                    Get_final_Path(child);//o(N^2)
                 }
-                child.direction_of_moves = "UP";
-                check = Child_Open(child);
+                child.direction_of_moves = "UP"; //o(1)
+                check = Child_Open(child); //o(1)
 
-                if (check == false)
+                if (check == false) //o(1)
                 {
                     PQ_list.Enqueue(child);
-                    Open_child.Add(child.key, child);
+                    Open_child.Add(child.key, child); //o(1)
                 }
             }
 
@@ -159,29 +159,29 @@ namespace N_Puzzel_Project
         //***********************************************************************************
         public int Closed_child(Puzzel N)
         {
-            if (closed_child.ContainsKey(N.key) == true)
+            if (closed_child.ContainsKey(N.key) == true) //o(1)
             {
                 //check if cost of cloed one less than 
-                Puzzel check = closed_child[N.key];
-                if (check.cost < N.cost)
+                Puzzel check = closed_child[N.key]; //o(1)
+                if (check.cost < N.cost) //o(1)
                 {
                     PQ_list.Enqueue(check);
-                    Open_child.Add(check.key, check);
+                    Open_child.Add(check.key, check);//o(1)
                 }
-                return 0;
+                return 0; //o(1)
             }
-            return 1;
+            return 1;  //o(1)
         }
 
         //***********************************************************************************
         public void A_Star_Algorithm_wiht_hamming(Puzzel First)
         {
-            Open_child.Add(First.key, First);
+            Open_child.Add(First.key, First); //o(1)
             PQ_list.Enqueue(First);
             while (Exit == 0)
             {
                 Puzzel New = new Puzzel(PQ_list.Dequeue(),0);
-                if (Closed_child(New) == 1)
+                if (Closed_child(New) == 1) 
                 {
                     closed_child.Add(New.key, New);
                     Create_New_Child(New);
