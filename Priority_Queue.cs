@@ -8,10 +8,10 @@ namespace N_Puzzel_Project
         public List<Puzzel> PUZZLE = new List<Puzzel>();
         public void Enqueue(Puzzel item)
         {
-            PUZZLE.Add(item);
-            int child_index = PUZZLE.Count - 1, parent_index;
+            PUZZLE.Add(item);//O(1)
+            int child_index = PUZZLE.Count - 1, parent_index;//O(N)
             here:
-            parent_index = (child_index - 1) / 2;
+            parent_index = (child_index - 1) / 2;//O(N)
             if ((PUZZLE[child_index].cost) < (PUZZLE[parent_index].cost))
             {
                 Puzzel tmp = PUZZLE[parent_index];

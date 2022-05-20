@@ -157,10 +157,8 @@ namespace N_Puzzel_Project
                         Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                         Hamming A = new Hamming();
                         A.A_Star_Algorithm_wiht_hamming(start);
-                        // A.Display_();
                         t.Stop();
                         var s = t.Elapsed;
-                        Console.WriteLine();
                         Console.WriteLine("Time Taken In S : " + ((s)));
                     }
                 }
@@ -175,11 +173,9 @@ namespace N_Puzzel_Project
                     Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);
                     Manhattan A = new Manhattan();
                     A.A__Algorithm(start);
-                    // A.Display_path();
-                    var s = t.Elapsed;
-                    Console.WriteLine();
-                    Console.WriteLine("Time Taken In S : " + ((s)));
                     t.Stop();
+                    var s = t.Elapsed;
+                    Console.WriteLine("Time Taken In S : " + ((s)));
                 }
             }
             else if (choose == "3")
@@ -192,24 +188,16 @@ namespace N_Puzzel_Project
                     Console.WriteLine("------MANHATTAN------");
                     Manhattan M = new Manhattan();
                     M.A__Algorithm(start);
-                   // M.Display_path();
-                    Console.WriteLine();
                     Hamming A = new Hamming();
                     Console.WriteLine("------HAMMING------");
                     A.A_Star_Algorithm_wiht_hamming(start);
-                    // A.Display_();
-                    var s = t.Elapsed;
-                    Console.WriteLine();
-                    Console.WriteLine("Time Taken In S : " + ((s)));
                     t.Stop();
-                    Console.WriteLine();
+                    var s = t.Elapsed;
+                    Console.WriteLine("Time Taken In S : " + ((s)));
                 }
             }
             else
                 Console.WriteLine(" No Feasible Solution For The Given Board ");
-            //y = Environment.TickCount;
-            Console.WriteLine();
-            Console.Write("----------------------------------------");
         }
     }
 }
