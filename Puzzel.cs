@@ -24,22 +24,22 @@ namespace N_Puzzel_Project
         //*****************************************************************************************
         public Puzzel(int size, int[,] puzzel , int blank_i , int blank_j)//O(N^2)
         {
-            puzzel_2D_array = puzzel;
-            puzzel_size = size;
-            blank_space_i = blank_i;
-            blank_space_j = blank_j;
-            direction_of_moves = "Start";
-            Hamming();//O(N)
-            manhattan();//O(N)
-            number_of_level = 0;
-            parent = null;
+            puzzel_2D_array = puzzel; //o(1)
+            puzzel_size = size; //o(1)
+            blank_space_i = blank_i; //o(1)
+            blank_space_j = blank_j; //o(1)
+            direction_of_moves = "Start"; //o(1)
+            Hamming(); //o(n)
+            manhattan(); //o(n)
+            number_of_level = 0; //o(1)
+            parent = null; //o(1)
 
             for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N^2)
             {
-                    int i = x / puzzel_size;
-                    int j = x % puzzel_size;
-                    puzzel_2D_array[i, j] = puzzel[i, j];
-                    key += puzzel[i, j]; 
+                int i = x / puzzel_size; //o(1)
+                int j = x % puzzel_size; //o(1)
+                puzzel_2D_array[i, j] = puzzel[i, j]; //o(1)
+                key += puzzel[i, j];  //o(1)
             }
         }
        
@@ -47,42 +47,41 @@ namespace N_Puzzel_Project
 
         public Puzzel(Puzzel p, int x)//O(N^2)
         {
-            puzzel_size = p.puzzel_size;
-            puzzel_2D_array = new int[puzzel_size, puzzel_size];
-            blank_space_i = p.blank_space_i;
-            blank_space_j = p.blank_space_j;
-            number_of_level = p.number_of_level;
-            parent = p;
-            cost = p.cost;
-            key = p.key;
-            hamming_value = p.hamming_value;
-            manhattan_value = p.manhattan_value;
+            puzzel_size = p.puzzel_size; //o(1)
+            puzzel_2D_array = new int[puzzel_size, puzzel_size]; //o(1)
+            blank_space_i = p.blank_space_i; //o(1)
+            blank_space_j = p.blank_space_j; //o(1)
+            number_of_level = p.number_of_level; //o(1)
+            parent = p; //o(1)
+            cost = p.cost; //o(1)
+            key = p.key; //o(1)
+            hamming_value = p.hamming_value; //o(1)
+            manhattan_value = p.manhattan_value; //o(1)
 
             for (int y = 0; y < puzzel_size * puzzel_size; y++)//O(N^2)
             {
-                int i = y / puzzel_size;
-                int j = y % puzzel_size;
-                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j];
-                
+                int i = y / puzzel_size; //o(1)
+                int j = y % puzzel_size; //o(1)
+                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j]; //o(1)
+
             }
         }
 
         //***************copy constructor**************************************************************************
-        public Puzzel(Puzzel p)//O(N^2)
+        public Puzzel(Puzzel p) //o(n^2)
         {
-            puzzel_size = p.puzzel_size;
-            puzzel_2D_array = new int[puzzel_size, puzzel_size];
-            blank_space_i = p.blank_space_i;
-            blank_space_j = p.blank_space_j;
-            number_of_level = p.number_of_level + 1;
+            puzzel_size = p.puzzel_size; //o(1)
+            puzzel_2D_array = new int[puzzel_size, puzzel_size]; //o(1)
+            blank_space_i = p.blank_space_i; //o(1)
+            blank_space_j = p.blank_space_j; //o(1)
+            number_of_level = p.number_of_level + 1; //o(1)
             parent = p.parent;
 
             for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N^2)
             {
-                int i = x / puzzel_size;
-                int j = x % puzzel_size;
-                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j];
-               
+                int i = x / puzzel_size; //o(1)
+                int j = x % puzzel_size; //o(1)
+                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j]; //o(1)
             }
          }
 
@@ -347,7 +346,7 @@ namespace N_Puzzel_Project
             {
                 if (cn == i && cn % puzzel_size == 0)
                 {
-                    Console.WriteLine(" ------- > " + direction_of_moves);
+                    Console.WriteLine(" ---> " + direction_of_moves);
                     cn++;
                 }
                 if (i != puzzel_size - 1 && j != puzzel_size - 1)
@@ -379,5 +378,6 @@ namespace N_Puzzel_Project
         }
 
     }
+
 }
 

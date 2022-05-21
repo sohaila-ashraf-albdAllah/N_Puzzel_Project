@@ -25,9 +25,7 @@ namespace N_Puzzel_Project
                         Path_Of_Res[i].Display();
                     }
                 }             
-                Console.WriteLine("______________________________________");
-                Console.WriteLine("--> ( Number of Movements = " + (num - 1) + " )");
-                Console.WriteLine("______________________________________");
+                Console.WriteLine("Number of Movements = " + (num - 1));
             }
             Exit = 1;
         }
