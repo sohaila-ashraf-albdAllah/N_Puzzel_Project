@@ -13,16 +13,15 @@ namespace N_Puzzel_Project
         public bool right;
     }
 
-    class Puzzel //O(N^3)
+    class Puzzel //O(N^2)
     {
         public int[,] puzzel_2D_array;//O(1)
         public int puzzel_size, blank_space_i, blank_space_j, hamming_value, manhattan_value, cost, number_of_level; //number of moves tree level  //O(1)
         public String direction_of_moves , key="";//O(1)
         public Puzzel parent;//O(1)
         public Movements mov;//O(1)
-
         //*****************************************************************************************
-        public Puzzel(int size, int[,] puzzel , int blank_i , int blank_j)//O(N^3)
+        public Puzzel(int size, int[,] puzzel , int blank_i , int blank_j)//O(N^2)
         {
             puzzel_2D_array = puzzel; //O(N)
             puzzel_size = size; //O(1)
@@ -34,18 +33,16 @@ namespace N_Puzzel_Project
             number_of_level = 0; //O(1)
             parent = null; //O(1)
 
-            for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N^2) * O(N) --> O(N^3)
+            for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N) * O(N) --> O(N^2)
             {
                 int i = x / puzzel_size; //O(1)
                 int j = x % puzzel_size; //O(1)
                 puzzel_2D_array[i, j] = puzzel[i, j]; //O(N)
                 key += puzzel[i, j];  //O(1)
             }
-        }
-       
+        }     
         //*****************************************************************************************
-
-        public Puzzel(Puzzel p, int x)//O(N^3)
+        public Puzzel(Puzzel p, int x)//O(N^2)
         {
             puzzel_size = p.puzzel_size; //O(1)
             puzzel_2D_array = new int[puzzel_size, puzzel_size]; //O(1)
@@ -58,7 +55,7 @@ namespace N_Puzzel_Project
             hamming_value = p.hamming_value; //O(1)
             manhattan_value = p.manhattan_value; //O(1)
 
-            for (int y = 0; y < puzzel_size * puzzel_size; y++)//O(N^2) * O(N) --> O(N^3)
+            for (int y = 0; y < puzzel_size * puzzel_size; y++)//O(N) * O(N) --> O(N^2)
             {
                 int i = y / puzzel_size; //O(1)
                 int j = y % puzzel_size; //O(1)
@@ -68,7 +65,7 @@ namespace N_Puzzel_Project
         }
 
         //***************copy constructor**************************************************************************
-        public Puzzel(Puzzel p)//O(N^3)
+        public Puzzel(Puzzel p)//O(N^2)
         {
             puzzel_size = p.puzzel_size; //O(1)
             puzzel_2D_array = new int[puzzel_size, puzzel_size]; //O(1)
@@ -77,7 +74,7 @@ namespace N_Puzzel_Project
             number_of_level = p.number_of_level + 1; //O(1)
             parent = p.parent;
 
-            for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N^2) * O(N) --> O(N^3)
+            for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N) * O(N) --> O(N^2)
             {
                 int i = x / puzzel_size; //O(1)
                 int j = x % puzzel_size; //O(1)
@@ -86,7 +83,7 @@ namespace N_Puzzel_Project
          }
 
         //*****************************************************************************************
-        public void Hamming()//O(N)
+        public void Hamming()//O(log N)
         {
             /* ex
              * ==> 1  2  3  4  5  6  7  8 
@@ -96,7 +93,7 @@ namespace N_Puzzel_Project
             int miss_position = 0; //O(1)  // number of blocks out of place
             int correct_position = 1; //O(1)  // position correct number allocation
             int i = 0, j = 0;//O(1)
-            while (i < puzzel_size)//O(N)
+            while (i < puzzel_size)//O(log N)
             {
                 if (i != puzzel_size - 1 && j != puzzel_size - 1)//O(1)
                 {
@@ -145,10 +142,10 @@ namespace N_Puzzel_Project
 
         //*****************************************************************************************
 
-        public void manhattan()//O(N)
+        public void manhattan()//O(log N)
         {
             int i = 0, j = 0, cnt = 0, RES = 0;//O(1)
-            while (i < puzzel_size)//O(N)
+            while (i < puzzel_size)//O(log N)
             {
                 if (i != puzzel_size - 1 && j != puzzel_size - 1)//O(1)
                 {
@@ -339,10 +336,10 @@ namespace N_Puzzel_Project
 
         /*********************************************End of movement********************************************/
 
-        public void Display()//O(N)
+        public void Display()//O(log N)
         {
             int i = 0, j = 0, cn = 0;//O(1)
-            while (i < puzzel_size)//O(N)
+            while (i < puzzel_size)//O(log N)
             {
                 if (cn == i && cn % puzzel_size == 0)//O(1)
                 {

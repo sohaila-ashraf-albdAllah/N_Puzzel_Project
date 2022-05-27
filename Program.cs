@@ -11,7 +11,7 @@ namespace N_Puzzel_Project
         static int indexn0, indexi0;//O(1)
         static string choice;//O(1)
         public static int x, y = 0;//O(1)
-        static FileStream choosefile()//O(N^2)
+        static FileStream choosefile()//O(N)
         {           
             FileStream d;//O(1)
             Console.WriteLine("________________________________________");//O(1)
@@ -112,7 +112,7 @@ namespace N_Puzzel_Project
             FileStream file_puzzle = choosefile();//O(N^2)
             StreamReader sr = new StreamReader(file_puzzle);//O(N)
             string[] vertices = sr.ReadLine().Split(' ');//O(N)
-            int cases = int.Parse(vertices[0]);
+            int cases = int.Parse(vertices[0]);//O(1)
             int[,] arr = new int[cases, cases];//O(1)
             int[] arr2 = new int[cases * cases];//O(1)
             int n = 0, counter = 0;//O(1)
