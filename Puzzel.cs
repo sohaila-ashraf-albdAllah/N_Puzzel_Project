@@ -13,7 +13,7 @@ namespace N_Puzzel_Project
         public bool right;
     }
 
-    class Puzzel
+    class Puzzel //O(N^3)
     {
         public int[,] puzzel_2D_array;//O(1)
         public int puzzel_size, blank_space_i, blank_space_j, hamming_value, manhattan_value, cost, number_of_level; //number of moves tree level  //O(1)
@@ -22,66 +22,66 @@ namespace N_Puzzel_Project
         public Movements mov;//O(1)
 
         //*****************************************************************************************
-        public Puzzel(int size, int[,] puzzel , int blank_i , int blank_j)//O(N^2)
+        public Puzzel(int size, int[,] puzzel , int blank_i , int blank_j)//O(N^3)
         {
-            puzzel_2D_array = puzzel; //o(N)
-            puzzel_size = size; //o(1)
-            blank_space_i = blank_i; //o(1)
-            blank_space_j = blank_j; //o(1)
-            direction_of_moves = "Start"; //o(1)
-            Hamming(); //o(n)
-            manhattan(); //o(n)
-            number_of_level = 0; //o(1)
-            parent = null; //o(1)
+            puzzel_2D_array = puzzel; //O(N)
+            puzzel_size = size; //O(1)
+            blank_space_i = blank_i; //O(1)
+            blank_space_j = blank_j; //O(1)
+            direction_of_moves = "Start"; //O(1)
+            Hamming(); //O(N)
+            manhattan(); //O(N)
+            number_of_level = 0; //O(1)
+            parent = null; //O(1)
 
-            for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N^2)
+            for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N^2) * O(N) --> O(N^3)
             {
-                int i = x / puzzel_size; //o(1)
-                int j = x % puzzel_size; //o(1)
-                puzzel_2D_array[i, j] = puzzel[i, j]; //o(N)
-                key += puzzel[i, j];  //o(1)
+                int i = x / puzzel_size; //O(1)
+                int j = x % puzzel_size; //O(1)
+                puzzel_2D_array[i, j] = puzzel[i, j]; //O(N)
+                key += puzzel[i, j];  //O(1)
             }
         }
        
         //*****************************************************************************************
 
-        public Puzzel(Puzzel p, int x)//O(N^2)
+        public Puzzel(Puzzel p, int x)//O(N^3)
         {
-            puzzel_size = p.puzzel_size; //o(1)
-            puzzel_2D_array = new int[puzzel_size, puzzel_size]; //o(1)
-            blank_space_i = p.blank_space_i; //o(1)
-            blank_space_j = p.blank_space_j; //o(1)
-            number_of_level = p.number_of_level; //o(1)
-            parent = p; //o(1)
-            cost = p.cost; //o(1)
-            key = p.key; //o(1)
-            hamming_value = p.hamming_value; //o(1)
-            manhattan_value = p.manhattan_value; //o(1)
+            puzzel_size = p.puzzel_size; //O(1)
+            puzzel_2D_array = new int[puzzel_size, puzzel_size]; //O(1)
+            blank_space_i = p.blank_space_i;//O(1)
+            blank_space_j = p.blank_space_j;//O(1)
+            number_of_level = p.number_of_level;//O(1)
+            parent = p; //O(1)
+            cost = p.cost; //O(1)
+            key = p.key; //O(1)
+            hamming_value = p.hamming_value; //O(1)
+            manhattan_value = p.manhattan_value; //O(1)
 
-            for (int y = 0; y < puzzel_size * puzzel_size; y++)//O(N^2)
+            for (int y = 0; y < puzzel_size * puzzel_size; y++)//O(N^2) * O(N) --> O(N^3)
             {
-                int i = y / puzzel_size; //o(1)
-                int j = y % puzzel_size; //o(1)
-                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j]; //o(N)
+                int i = y / puzzel_size; //O(1)
+                int j = y % puzzel_size; //O(1)
+                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j]; //O(N)
 
             }
         }
 
         //***************copy constructor**************************************************************************
-        public Puzzel(Puzzel p) //o(n^2)
+        public Puzzel(Puzzel p)//O(N^3)
         {
-            puzzel_size = p.puzzel_size; //o(1)
-            puzzel_2D_array = new int[puzzel_size, puzzel_size]; //o(1)
-            blank_space_i = p.blank_space_i; //o(1)
-            blank_space_j = p.blank_space_j; //o(1)
-            number_of_level = p.number_of_level + 1; //o(1)
+            puzzel_size = p.puzzel_size; //O(1)
+            puzzel_2D_array = new int[puzzel_size, puzzel_size]; //O(1)
+            blank_space_i = p.blank_space_i; //O(1)
+            blank_space_j = p.blank_space_j; //O(1)
+            number_of_level = p.number_of_level + 1; //O(1)
             parent = p.parent;
 
-            for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N^2)
+            for (int x = 0; x < puzzel_size * puzzel_size; x++)//O(N^2) * O(N) --> O(N^3)
             {
-                int i = x / puzzel_size; //o(1)
-                int j = x % puzzel_size; //o(1)
-                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j]; //o(N)
+                int i = x / puzzel_size; //O(1)
+                int j = x % puzzel_size; //O(1)
+                puzzel_2D_array[i, j] = p.puzzel_2D_array[i, j]; //O(N)
             }
          }
 
@@ -299,9 +299,9 @@ namespace N_Puzzel_Project
         }
 
 
-        public bool check_Movement_value(int u, int d, int l, int r)//Θ(N)
+        public bool check_Movement_value(int u, int d, int l, int r)//O(N)
         {
-            if (u == 1)//O(1)
+            if (u == 1)//O(N)
             {
                 if (blank_space_i != 0)//O(1)
                 {
@@ -309,7 +309,7 @@ namespace N_Puzzel_Project
                 }
                 return mov.up;//O(1)
             }
-            if (d == 1)//O(1)
+            if (d == 1)//O(N)
             {
                 if (blank_space_i != puzzel_size - 1)//O(1)
                 {
@@ -317,7 +317,7 @@ namespace N_Puzzel_Project
                 }
                 return mov.down;//O(1)
             }
-            if (l == 1)//O(1)
+            if (l == 1)//O(N)
             {
                 if (blank_space_j != 0)//O(1)
                 {
@@ -325,7 +325,7 @@ namespace N_Puzzel_Project
                 }
                 return mov.left;//O(1)
             }
-            if (r == 1)//O(1)
+            if (r == 1)//O(N)
             {
                 if (blank_space_j != puzzel_size - 1)//O(1)
                 {
@@ -339,7 +339,7 @@ namespace N_Puzzel_Project
 
         /*********************************************End of movement********************************************/
 
-        public void Display()//Θ(N)
+        public void Display()//O(N)
         {
             int i = 0, j = 0, cn = 0;//O(1)
             while (i < puzzel_size)//O(N)

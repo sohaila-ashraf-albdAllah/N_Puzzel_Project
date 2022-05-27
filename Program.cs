@@ -21,7 +21,7 @@ namespace N_Puzzel_Project
         HERE://O(N)
             Console.Write(" ====> ");//O(1)
             string choice = Console.ReadLine();//O(N)
-            if (choice == "a" || choice == "A")//O(1)
+            if (choice == "a" || choice == "A")//O(1) * O(N) --> O(N)
             {
                 Console.WriteLine("________________________________________");//O(1)
                 Console.WriteLine("|\tIs it A kind of text\t\t|\n" 
@@ -73,19 +73,19 @@ namespace N_Puzzel_Project
             }
             goto HERE;//O(1)
         }
-        static int getnumberofversion(int N, int[] arr2)//O(N ^ 4)
+        static int getnumberofversion(int N, int[] arr2)//O(N ^ 5)
         {
             int num_of_version = 0;//O(1)
-            for (int i = 0; i < N * N - 1; i++)//O(N * N) * O(N * N) --> O(N ^ 4)
-                for (int j = i + 1; j < N * N; j++)//O(N * N)
+            for (int i = 0; i < N * N - 1; i++)//O(N ^ 2) * O(N ^ 3) --> O(N ^ 5)
+                for (int j = i + 1; j < N * N; j++)//O(N ^ 2) * O(N) --> O(N ^ 3)
                     if (arr2[j] != 0 && arr2[i] != 0 && arr2[i] > arr2[j])//O(N)
                         num_of_version++;//O(1)
             return num_of_version;//O(1)
         }
-        static bool isSolvable(int N, int[] puzzle)//O(N ^ 4)
+        static bool isSolvable(int N, int[] puzzle)//O(N ^ 5)
         {
             bool num = false;//O(1)
-            int num_of_Inversions = getnumberofversion(N, puzzle);//O(N ^ 4)
+            int num_of_Inversions = getnumberofversion(N, puzzle);//O(N ^ 5)
             //number odd and version even
             if (N % 2 != 0 && num_of_Inversions % 2 == 0)//O(1)
                 num = true;//O(1)
@@ -123,7 +123,7 @@ namespace N_Puzzel_Project
                     continue;//O(1)
                 string[] only_line = line.Split(' ');//O(1)
                 int i = 0;//O(1)
-                while (i < cases)//O(N)
+                while (i < cases)//O(1)
                 {
                     arr2[counter] = int.Parse(only_line[i]);//O(1)
                     arr[n, i] = int.Parse(only_line[i]);//O(1)
@@ -146,24 +146,22 @@ namespace N_Puzzel_Project
             string choose = Console.ReadLine();//O(1)
             int x, y = 0;//O(1)
             //x = Environment.TickCount;
-            if (choose == "1")//O(1)
-            {
+            if (choose == "1")//O(N^12)
+            {             
+                Stopwatch t = new Stopwatch();//O(1)
+                t.Start();//O(1)
+                // Check If Board Is Solvable Or Not 
+                if (isSolvable(cases, arr2))//O(N ^ 5) * O(N^7) --> O(N^12)
                 {
-                    Stopwatch t = new Stopwatch();//O(1)
-                    t.Start();//O(1)
-                    // Check If Board Is Solvable Or Not 
-                    if (isSolvable(cases, arr2))//O(N ^ 4)
-                    {
-                        Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);//O(N^2)
-                        Hamming A = new Hamming();
-                        A.A_Star_Algorithm_wiht_hamming(start);//O(N^3)
-                        t.Stop();//O(1)
-                        var s = t.Elapsed;//O(1)
-                        Console.WriteLine("Time Taken In S : " + ((s)));//O(1)
-                    }
-                }
+                    Puzzel start = new Puzzel(cases, arr, indexn0, indexi0);//O(N^3)
+                    Hamming A = new Hamming();
+                    A.A_Star_Algorithm_wiht_hamming(start);//O(N^7)
+                    t.Stop();//O(1)
+                    var s = t.Elapsed;//O(1)
+                    Console.WriteLine("Time Taken In S : " + ((s)));//O(1)
+                }             
             }
-            else if (choose == "2")//O(1)
+            else if (choose == "2")//O(N ^ 12)
             {
                 Stopwatch t = new Stopwatch();//O(1)
                 t.Start();//O(1)
