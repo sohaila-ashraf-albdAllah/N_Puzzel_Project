@@ -34,7 +34,7 @@ namespace N_Puzzel_Project
             for (int child_index = PUZZLE.Count ; child_index > 0; child_index = child_index / 2)//O(log N) * O(N) --> O(Nlog N)
             {
                 int leftchild_index = parent_index * 2 + 1;//O(1)
-                if (leftchild_index <= lastindex_afterchange)//O(1) * O(N) --> O(N)
+                if (leftchild_index <= lastindex_afterchange)//O(N)
                 {
                     int right_children = leftchild_index + 1;//O(1)
                     if (right_children <= lastindex_afterchange && PUZZLE[right_children].cost < PUZZLE[leftchild_index].cost)//O(N)
