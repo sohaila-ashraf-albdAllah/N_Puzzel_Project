@@ -92,63 +92,63 @@ namespace N_Puzzel_Project
                     Open_child.Add(New_puzzel.key, New_puzzel);//O(1)
                 }
             }
-            if (N.check_Movement_value(0, 1, 0, 0) == true)//O(N) * O(N^2) --> O(N^3)
+            if (N.check_Movement_value(0, 1, 0, 0) == true)//O(N^2)
             {
-                Puzzel New_puzzel = new Puzzel(N);//O(N^3)
+                Puzzel New_puzzel = new Puzzel(N);//O(N^2)
                 New_puzzel.Down_movement();//O(N)
-                New_puzzel.manhattan();//O(N)
+                New_puzzel.manhattan();//O(logN)
                 New_puzzel.Calculate_cost_Manhattan();//O(1)
-                if (New_puzzel.IS_reache_to_goal_manhattan() == true)//O(1) * O(N^2) --> O(N^2)
+                if (New_puzzel.IS_reache_to_goal_manhattan() == true)//O(N log N)
                 {
                     New_puzzel.direction_of_moves = "Goal";//O(1)
                     Path_Of_Res.Add(New_puzzel);//O(1)
                     return New_puzzel;
                 }
-                New_puzzel.direction_of_moves = "Down";//O(1)
-                int flag = Child_Open(New_puzzel);//O(N ^ 2)
-                if (flag == 1)//O(1) * O(N^2) --> O(N^2)
+                New_puzzel.direction_of_moves = "DOWN"; //O(1)
+                int flag = Child_Open(New_puzzel);//O(N)
+                if (flag == 1)//O(N log N)
                 {
-                    PQ_list.Enqueue(New_puzzel);//O(N^2)
+                    PQ_list.Enqueue(New_puzzel);//O(N log N)
                     Open_child.Add(New_puzzel.key, New_puzzel);//O(1)
                 }
             }
-            if (N.check_Movement_value(0, 0, 0, 1) == true)//O(N) * O(N^2) --> O(N^3)
+            if (N.check_Movement_value(0, 0, 0, 1) == true)//O(N^2)
             {
-                Puzzel New_puzzel = new Puzzel(N);//O(N^3)
+                Puzzel New_puzzel = new Puzzel(N);//O(N^2)
                 New_puzzel.Right_movement();//O(N)
-                New_puzzel.manhattan();//O(N)
+                New_puzzel.manhattan();//O(logN)
                 New_puzzel.Calculate_cost_Manhattan();//O(1)
-                if (New_puzzel.IS_reache_to_goal_manhattan() == true)//O(1) * O(N^2) --> O(N^2)
+                if (New_puzzel.IS_reache_to_goal_manhattan() == true)//O(N log N)
                 {
                     New_puzzel.direction_of_moves = "Goal";//O(1)
                     Path_Of_Res.Add(New_puzzel);//O(1)
                     return New_puzzel;
                 }
-                New_puzzel.direction_of_moves = "Right";//O(1)
-                int flag = Child_Open(New_puzzel);//O(N ^ 2)
-                if (flag == 1)//O(1) * O(N^2) --> O(N^2)
+                New_puzzel.direction_of_moves = "RIGHT"; //O(1)
+                int flag = Child_Open(New_puzzel);//O(N)
+                if (flag == 1)//O(N log N)
                 {
-                    PQ_list.Enqueue(New_puzzel);//O(N^2)
+                    PQ_list.Enqueue(New_puzzel);//O(N log N)
                     Open_child.Add(New_puzzel.key, New_puzzel);//O(1)
                 }
             }
             if (N.check_Movement_value(0, 0, 1, 0) == true)//O(N) * O(N^2) --> O(N^3)
             {
-                Puzzel New_puzzel = new Puzzel(N);//O(N^3)
+                Puzzel New_puzzel = new Puzzel(N);//O(N^2)
                 New_puzzel.Left_movement();//O(N)
-                New_puzzel.manhattan();//O(N)
+                New_puzzel.manhattan();//O(logN)
                 New_puzzel.Calculate_cost_Manhattan();//O(1)
-                if (New_puzzel.IS_reache_to_goal_manhattan() == true)//O(1) * O(N^2) --> O(N^2)
+                if (New_puzzel.IS_reache_to_goal_manhattan() == true)//O(N log N)
                 {
                     New_puzzel.direction_of_moves = "Goal";//O(1)
                     Path_Of_Res.Add(New_puzzel);//O(1)
                     return New_puzzel;
                 }
-                New_puzzel.direction_of_moves = "Left";//O(1)
-                int flag = Child_Open(New_puzzel);//O(N ^ 2)
-                if (flag == 1)//O(1) * O(N^2) --> O(N^2)
+                New_puzzel.direction_of_moves = "LEFT"; //O(1)
+                int flag = Child_Open(New_puzzel);//O(N)
+                if (flag == 1)//O(N log N)
                 {
-                    PQ_list.Enqueue(New_puzzel);//O(N^2)
+                    PQ_list.Enqueue(New_puzzel);//O(N log N)
                     Open_child.Add(New_puzzel.key, New_puzzel);//O(1)
                 }
             }
