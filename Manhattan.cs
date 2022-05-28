@@ -40,7 +40,8 @@ namespace N_Puzzel_Project
                 prnt = prnt.parent; //O(1)
             }
             Path_Of_Res.Add(prnt);//O(1)
-            Display_path(size);//O(N log N)
+
+           Display_path(size);//O(N log N)
         }
         //***********************************************************************************
         public int Closed_child(Puzzel N)//(Nlog N)
@@ -167,7 +168,7 @@ namespace N_Puzzel_Project
                 {
                     closed_child.Add(New.key, New);//O(1)
                     Puzzel Last = Create_New_Child(New);//O(N^2)
-                    if(Last != null)//O(1)
+                    if (Last != null)//O(1)
                     {
                         get_Entire_Path(Last);//(log(v)) //O(N log N)
                     }

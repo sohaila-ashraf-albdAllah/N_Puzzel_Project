@@ -56,7 +56,7 @@ namespace N_Puzzel_Project
         }
 
         //***********************************************************************************
-        public void Create_New_Child(Puzzel p) //O(N^2)
+        public Puzzel Create_New_Child(Puzzel p) //O(N^2)
         {
             if (p.check_Movement_value(1,0,0,0)==true) //O(N^2)
             {
@@ -187,7 +187,7 @@ namespace N_Puzzel_Project
                     Puzzel Last = Create_New_Child(New);//O(N^2)
                     if (Last != null)//O(1)
                     {
-                        Get_final_Path(child);
+                        Get_final_Path(Last);
                     }
                 }
             }
